@@ -1,0 +1,127 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Account.master.cs" Inherits="MyPrescription.Account.Account" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="My Doctor. My Prescription." />
+    <meta name="author" content="Jyoti Prakash Jena" />
+
+    <link rel="shortcut icon" href="../Resources/Images/logo.png" />
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
+    <link href="http://fonts.googleapis.com/css?family=Sofia" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400italic" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" />
+    
+    <!--Custom Stylesheet-->
+    <link href="../CSS/Account/Master.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">     
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">           
+            <div class="col-xs-11">
+                <a class="navbar-brand" href="Dashboard.aspx">
+                    <img id="BrandImage" src="../../Resources/Images/logo.png" height="50" />                    
+                    <a class="text-right" id="BrandText" href="Dashboard.aspx">
+                        <div id="SmallGap"></div>
+                        My Prescription
+                    </a>
+                </a>
+            </div>
+
+            <div class="col-xs-1">
+                <div class="pull-right dropdown">
+                    <img id="ProfilePic" src="../../Resources/ProfilePictures/default.jpg" height="45" runat="server" />
+                    <div class="text-center dropdown-menu small-info-dropdown" id="CaretDiv">
+                        <i class="fa fa-caret-up fa-3x fa-inverse" aria-hidden="true"></i></div>
+                    <div class="dropdown-menu small-info-dropdown" id="ShowInfoDiv">                        
+                        <div class="panel panel-default" id="ProfilePictureDropdown">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <img id="ProfilePicLarge" class="dropdown-toggle" data-toggle="dropdown" 
+                                            src="../../Resources/ProfilePictures/default.jpg" height="120" runat="server" />
+                                        <div id="ChangeDiv">Change</div>
+                                    </div>
+                                    <div class="col-xs-7" id="SmallInfo">
+                                        <b><span id="spanName" runat="server"><i class="error">Name not available</i></span></b><br />
+                                        <span id="spanEmail" runat="server"><i class="error">Email not available</i></span>
+                                        <br />
+                                        <span id="spanPhone" runat="server"><i class="error">Phone No not available</i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="row text-center">
+                                    <div class="col-xs-6 pull-left">
+                                        <a class="btn btn-default" href="Profile.aspx" >Update Profile</a>
+                                    </div>
+                                    <div class="col-xs-6 pull-right">
+                                        <a class="btn btn-action" id="signOutBtn" href="Signout.aspx">Sign Out</a>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>  
+        </div>                 
+    </nav>
+
+    <div class="container-fluid text-center" id="BodyContent">
+        <div class="row content">
+
+            <div class="col-sm-3 SideNavigation">
+                <div class="list-group text-left">
+                    <a class="list-group-item" id="DashboardListItem" href="Dashboard.aspx"><i class="fa fa-area-chart fa-fw" aria-hidden="true"></i>&nbsp; Dashboard <span class="badge" id="dashboardCountBadge">0</span></a>
+                    <a class="list-group-item" id="ProfileListItem" href="Profile.aspx"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Profile <span class="badge" id="profileCountBadge">0%</span></a>
+                    <a class="list-group-item" id="HospitalsListItem" href="Hospitals.aspx"><i class="fa fa-h-square fa-fw" aria-hidden="true"></i>&nbsp; Hospitals <span class="badge" id="hospitalsCountBadge">0</span></a>
+                    <a class="list-group-item" id="DoctorsListItem" href="Doctors.aspx"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Doctors <span class="badge" id="doctorsCountBadge">0</span></a>
+                    <a class="list-group-item" id="VaultListItem" href="Vault.aspx"><i class="fa fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp; Vault <span class="badge" id="vaultsCountBadge">0</span></a>
+                </div>
+            </div>
+
+            <div class="col-sm-9 text-left MainContent">
+
+                <!-- JavaScript libs are placed at the end of the document so the pages load faster -->	    
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+                
+                <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+                <!-- Custom Js -->	
+                <script src="../Scripts/Account/Master.js"></script>
+
+                <div id="snackbar"></div>
+
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="container-fluid">        
+        <div class="row">                
+            <div class="col-md-12">
+                <p class="text-right" id="FooterText">
+                    Copyright &copy; 2016, My Prescription. Designed by &nbsp; <a href="http://www.meetvicky.com/" target="_blank"> Jyoti Prakash Jena</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Awaiting EMail verification</title>
+	<meta charset="utf-8" />  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <style>
+        .signature{            
+            color:darkgoldenrod;
+        }
+        .signature a {
+            color:darkcyan;
+            text-decoration:none;
+        }
+        .signature a:hover {
+            
+            color:lightblue;
+        }
+    </style>  
+</head>
+<body>
+
+    <h3>Dear #FNAME,</h3>
+    <p>
+        Kindly Click on the <a class='btn btn-primary' href='http://localhost:8080/Verify.aspx?token=#TOKEN'> VERIFY </a> button to activate your 
+        <a class='h4 text-info'>My Prescription</a> Account.
+    </p>
+    <p>You won't be able to avail all the features and benefits of My Prescription if you don't activate your account.</p>
+    <p>If you haven't registered on My Prescription, then kindly ignore this mail.</p>
+    <p class="signature">
+        <b>
+            Thanks & Regards,<br />
+            Team My Prescription <br />
+            <a href="www.myprescription.com">My Prescription</a>
+        </b>
+    </p>
+</body>
+</html>

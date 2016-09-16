@@ -1,0 +1,33 @@
+﻿table.dataTable tbody tr{
+    background-color:transparent;
+    padding:0px;
+    line-height:20px;
+    border-radius:20px;
+    display:table-row;
+}
+
+table{
+    height:50px;
+}
+
+table.dataTable tbody tr:nth-child(even){
+    background-color:rgba(0, 96, 100, 0.03);
+    box-shadow:0px 0px 10px rgba(0, 96, 100, 0.03);
+    border-radius:20px;
+}
+
+#addBtn{
+    margin-top:4px;
+}
+
+.theme-color{
+    color:#006064;
+}
+
+table.dataTable.dtr-inline.collapsed tbody td:first-child:before, table.dataTable.dtr-inline.collapsed tbody th:first-child:before{
+    background-color:#006064;
+}
+
+table.dataTable.dtr-inline.collapsed tbody tr.parent td:first-child:before, table.dataTable.dtr-inline.collapsed tbody tr.parent th:first-child:before{
+    background-color:orangered;
+}

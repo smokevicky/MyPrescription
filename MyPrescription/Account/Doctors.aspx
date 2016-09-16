@@ -1,0 +1,176 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Account/Account.Master" AutoEventWireup="true" 
+    CodeBehind="Doctors.aspx.cs" Inherits="MyPrescription.Account.Doctors" ClientIDMode="Static" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Doctors</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/1.0.0/css/dataTables.responsive.css" />
+
+    <link href="../CSS/Account/Doctors.css" rel="stylesheet" />
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="">
+        <input type="hidden" id="userIdSessionVariable" runat="server" />
+        <table id="example">
+            <thead class="wrapper-heading">
+                <h3>Doctors</h3>            
+                <tr>
+                    <th class="all">Sl. No.</th>
+                    <th>Primary</th>
+                    <th class="all">Name</th>
+                    <th>Address</th>
+                    <th>Ph No</th>
+                    <th class="all">Edit</th>
+                    <th class="all">Delete</th>
+                </tr>
+            </thead>
+                
+            <tbody class="wrapper-body">
+                                             
+            </tbody>
+
+            <tfoot class="wrapper-footer">                
+            </tfoot>
+        </table>
+        <a class="btn btn-action pull-right" id="addBtn">Add</a>
+    </div>
+
+    <!-- addNewModal -->
+    <div class="modal fade" id="addNewModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <form runat="server">                  
+                               
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add new Doctor details</h4>
+                  </div>
+                  
+                  <div class="modal-body" id="modalBody">
+
+                      <div id="inputDiv">
+
+                        <div class="row form-group ">
+                            <div class="col-xs-3">
+                                Full Name:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="text" id="doctorName" class="form-control" placeholder="Enter Full Name of the Doctor" 
+                                    maxlength="100" required="required" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                Address:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="text" id="doctorAddress" class="form-control" placeholder="Enter address" 
+                                    maxlength="100" required="required" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                Phone No:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="number" id="doctorPhoneNo" class="form-control" placeholder="Enter primary phone no"
+                                    maxlength="11" required="required"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />                                
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                Phone No:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="number" id="doctorPhoneNo2" class="form-control" 
+                                    placeholder="Enter secondary phone no (optional)" 
+                                    maxlength="11" 
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-9 error" id="emailValidationDiv">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                EMail-Id:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="email" id="doctorEmail" class="form-control" 
+                                    placeholder="Enter Email-Id of the Doctor" 
+                                    maxlength="50" required="required" />
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-9 error" id="hospitalValidationDiv">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                Related To:
+                            </div>
+                            <div class="col-xs-9">                                
+                                <asp:DropDownList ID = "hospitalsList" runat="server" required="required" class="form-control">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-5">
+                                Mark as Primary ???
+                            </div>
+                            <div class="col-xs-7">
+                                <input id="doctorPrimaryMark" type="checkbox" data-toggle="toggle" 
+                                    data-on="<i class='fa fa-thumb-tack' aria-hidden='true'></i> Marked" 
+                                    data-off="<i class='fa fa-thumb-tack fa-rotate-180' aria-hidden='true'></i> Unmarked" 
+                                    data-width="110" data-onstyle="action" />                     
+                            </div>
+                        </div>
+
+                        <div class="row form-group text-bold" id="noteDiv">
+                            <div class="col-xs-3">
+                                Note:
+                            </div>
+                            <div class="col-xs-9" id="noteText">
+                                
+                            </div>
+                        </div>
+
+                      </div>
+
+                      <div id="notificationDiv">
+
+                      </div>
+
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <a class="btn btn-default modal-cancel-btn" id="modalCancelBtn"></a>
+                    <button type="reset" class="btn btn-warning modal-reset-btn" id="modalResetBtn">Reset</button>
+                    <button type="submit" class="btn btn-action" id="modalAddBtn"></button>
+                  </div>
+
+              </form>  
+          </div>      
+        </div>
+      </div>
+
+    <script src="../Scripts/Account/Doctors.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>    
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/1.0.0/js/dataTables.responsive.js">
+    </script>   
+</asp:Content>

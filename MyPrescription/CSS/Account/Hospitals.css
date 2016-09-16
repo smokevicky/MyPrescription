@@ -1,0 +1,45 @@
+﻿@media screen and (max-width: 767px){
+    .primary-mark{
+        display:none;
+    }
+    #primaryHeader{
+        display:none;
+    }
+}
+
+@media screen and (max-width: 583px){
+    .hospital-address{
+        display:none;
+    }
+    #addressHeader{
+        display:none;
+    }
+}
+
+#addBtn{
+    width:130px;    
+}
+
+.wrapper .row{
+    margin:5px;    
+    align-items:center;
+    display: flex;
+    padding:5px;
+}
+
+.wrapper .row:nth-child(even){
+    /*background-color:#eaeaea;*/
+    background-color:rgba(0, 96, 100, 0.03);
+    box-shadow:0px 0px 10px rgba(0, 96, 100, 0.03);
+    border-radius:20px;
+}
+
+.primary-mark{
+    color:#006064;
+}
+
+#pageSizeDropup{    
+    min-width:50px;
+    left:-7px;
+}
+

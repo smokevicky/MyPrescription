@@ -1,0 +1,14 @@
+﻿@media screen and (min-width: 767px) {
+    .wrapper-heading{
+        position:relative;
+    }
+    .nav-tabs{
+        position:absolute;
+        bottom:0;
+    }
+}
+
+#profilePicVeryLarge{
+    height:300px;
+    border:2px solid #006064;
+}
