@@ -19,7 +19,7 @@ namespace MyPrescription
             string lname = signupLname.Value;
             string email = signupEmail.Value;
             string password = signupPwd.Value;
-            
+
             SignUpBL signUpBLObject = new SignUpBL();
             UserModel userModelObject = new UserModel();
             userModelObject.userId = Common.generateRandomId(FieldType.User);
@@ -32,11 +32,11 @@ namespace MyPrescription
             {
                 userModelObject = signUpBLObject.SignUp(userModelObject);
 
-                if(userModelObject.statusCode == StatusCode.invalid)
+                if (userModelObject.statusCode == StatusCode.invalid)
                 {
                     Session["statusCode"] = StatusCode.invalid;
                 }
-                else if(userModelObject.statusCode == StatusCode.valid)
+                else if (userModelObject.statusCode == StatusCode.valid)
                 {
                     Session["statusCode"] = StatusCode.valid;
                     Session["userId"] = userModelObject.userId;
@@ -45,7 +45,8 @@ namespace MyPrescription
                     Session["status"] = userModelObject.status;
                     Session["email"] = userModelObject.email;
 
-                    Session["fname"] = fname;                                                         //used for sending mail in signupStep2
+                    //used for sending mail in signupStep2
+                    Session["fname"] = fname;
 
                     Response.Redirect("SignUpStep2.aspx", false);
                 }
@@ -57,7 +58,7 @@ namespace MyPrescription
             catch (Exception ex)
             {
                 ErrorLog.LogError(ErrorCode.SignUpPAGE, ex.ToString());
-            }            
+            }
         }
     }
 }

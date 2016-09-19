@@ -1,5 +1,4 @@
 ﻿using MyPrescription.DAL;
-using MyPrescription.Error;
 using MyPrescription.Models;
 using MyPrescription.Util;
 using System;
@@ -21,7 +20,8 @@ namespace MyPrescription.API.Controller
             bool returnVal = false;
             string userId = User.Identity.Name;
 
-            try {
+            try
+            {
                 int hospitalId = Common.generateRandomId(FieldType.Hospital);
                 hospitalModelObject.hospitalId = hospitalId;
                 hospitalModelObject.userId = Convert.ToInt32(userId);
@@ -31,7 +31,7 @@ namespace MyPrescription.API.Controller
 
             catch (Exception ex)
             {
-                ErrorLog.LogError(ErrorCode.APIAddNewHospital, ex.ToString(), userId);
+                Error.ErrorLog.LogError(ErrorCode.APIAddNewHospital, ex.ToString(), userId);
             }
             return returnVal;
         }
@@ -44,18 +44,19 @@ namespace MyPrescription.API.Controller
         [HttpPost]
         [Authorize]
         public HospitalResponseModel GetHospitalDetails(HospitalRequestModel hospitalRequestModelObject)
-        {            
+        {
             HospitalResponseModel hospitalResponseModelObject = new HospitalResponseModel();
             string userId = User.Identity.Name;
             hospitalRequestModelObject.userId = Convert.ToInt32(userId);
 
-            try {
+            try
+            {
                 hospitalResponseModelObject = new HospitalDAL().GetHospitalDetails(hospitalRequestModelObject);
             }
 
             catch (Exception ex)
             {
-                ErrorLog.LogError(ErrorCode.APIGetHospitalDetails, ex.ToString(), userId);
+                Error.ErrorLog.LogError(ErrorCode.APIGetHospitalDetails, ex.ToString(), userId);
             }
             return hospitalResponseModelObject;
         }
@@ -68,18 +69,19 @@ namespace MyPrescription.API.Controller
         [HttpPost]
         [Authorize]
         public bool DeleteHospital(HospitalModel hospitalModelObject)
-        {            
-            bool returnVal = false;            
+        {
+            bool returnVal = false;
             string userId = User.Identity.Name;
             hospitalModelObject.userId = Convert.ToInt32(userId);
 
-            try {
+            try
+            {
                 returnVal = new HospitalDAL().DeleteHospital(hospitalModelObject);
             }
 
             catch (Exception ex)
             {
-                ErrorLog.LogError(ErrorCode.APIDeleteHospital, ex.ToString(), userId);
+                Error.ErrorLog.LogError(ErrorCode.APIDeleteHospital, ex.ToString(), userId);
             }
             return returnVal;
         }
@@ -96,15 +98,16 @@ namespace MyPrescription.API.Controller
             string userId = User.Identity.Name;
             hospitalModelObject.userId = Convert.ToInt32(userId);
 
-            try {
+            try
+            {
                 hospitalModelObject = new HospitalDAL().GetSingleHospitalDetails(hospitalModelObject);
             }
 
             catch (Exception ex)
             {
-                ErrorLog.LogError(ErrorCode.APIGetSingleHospitalDetails, ex.ToString(), userId);
+                Error.ErrorLog.LogError(ErrorCode.APIGetSingleHospitalDetails, ex.ToString(), userId);
             }
-            return hospitalModelObject;           
+            return hospitalModelObject;
         }
 
         /// <summary>
@@ -120,13 +123,14 @@ namespace MyPrescription.API.Controller
             string userId = User.Identity.Name;
             hospitalModelObject.userId = Convert.ToInt32(userId);
 
-            try {
+            try
+            {
                 returnVal = new HospitalDAL().UpdateHospitalDetails(hospitalModelObject);
             }
 
             catch (Exception ex)
             {
-                ErrorLog.LogError(ErrorCode.APIUpdateHospitalDetails, ex.ToString(), userId);
+                Error.ErrorLog.LogError(ErrorCode.APIUpdateHospitalDetails, ex.ToString(), userId);
             }
 
             return returnVal;

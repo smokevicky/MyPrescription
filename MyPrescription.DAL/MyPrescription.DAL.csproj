@@ -42,6 +42,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,17 +53,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\ActivateAccount_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BadgeDAL.cs" />
+    <Compile Include="DemoClass.cs" />
     <Compile Include="DoctorDAL.cs" />
+    <Compile Include="App_Code\DoctorMaster.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EnterNewPasswordDAL.cs" />
+    <Compile Include="App_Code\ErrorLog.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ErrorLogDAL.cs" />
     <Compile Include="FileDAL.cs" />
+    <Compile Include="App_Code\FileMaster.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\FlagAsForgotPassword_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPasswordDAL.cs" />
+    <Compile Include="App_Code\GetBadgeCount_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\GetDoctorDetails_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\GetHospitalDetails_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\GetSingleDoctorDetails_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\GetSingleHospitalDetails_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\GetSingleVaultDetails_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\GetVaultDetails_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\GetVaultIdFileName_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HospitalDAL.cs" />
+    <Compile Include="App_Code\HospitalMaster.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\LogIn_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\MyPrescriptionModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyPrescriptionModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\MyPrescriptionModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\MyPrescriptionModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyPrescriptionModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_Code\RecordTypeMaster.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\ResetPassword_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SignInDAL.cs" />
     <Compile Include="SignUpDAL.cs" />
+    <Compile Include="App_Code\SignUp_Result.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\UserDetail.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\UserMaster.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VaultDAL.cs" />
+    <Compile Include="App_Code\VaultMaster.cs">
+      <DependentUpon>MyPrescriptionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VerifyDAL.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,8 +156,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="App_Code\MyPrescriptionModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyPrescriptionModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App_Code\MyPrescriptionModel.edmx.diagram">
+      <DependentUpon>MyPrescriptionModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\MyPrescriptionModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyPrescriptionModel.edmx</DependentUpon>
+      <LastGenOutput>MyPrescriptionModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Code\MyPrescriptionModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyPrescriptionModel.edmx</DependentUpon>
+      <LastGenOutput>MyPrescriptionModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

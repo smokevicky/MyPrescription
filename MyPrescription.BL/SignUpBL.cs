@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyPrescription.DAL;
 using MyPrescription.Models;
-using MyPrescription.DAL;
 
 namespace MyPrescription.BL
 {

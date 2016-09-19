@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using MyPrescription.Util;
+﻿using MyPrescription.Error;
 using MyPrescription.Models;
-using MyPrescription.Error;
+using MyPrescription.Util;
+using System;
 
 namespace MyPrescription
 {
@@ -23,8 +18,11 @@ namespace MyPrescription
 
             try
             {
-                string body = System.IO.File.ReadAllText(Server.MapPath(EmailTemplates.emailVerificationHTML));//Get HTML form EmailTemplate
-                body = body.Replace("#FNAME", fname);                                                                     //replacing #TAGs in HTML
+                //Get HTML form EmailTemplate
+                string body = System.IO.File.ReadAllText(Server.MapPath(EmailTemplates.emailVerificationHTML));
+
+                //replacing #TAGs in HTML
+                body = body.Replace("#FNAME", fname);
                 body = body.Replace("#TOKEN", token);
 
                 string subject = "My Prescription - Awaiting EMail Verification";
