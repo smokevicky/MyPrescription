@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,12 +51,73 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\DoctorMaster.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\ErrorLog.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\FileMaster.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\HospitalMaster.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\MyPrescriptionEntityDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyPrescriptionEntityDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\MyPrescriptionEntityDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\MyPrescriptionEntityDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyPrescriptionEntityDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\RecordTypeMaster.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\UserDetail.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\UserMaster.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\VaultMaster.cs">
+      <DependentUpon>MyPrescriptionEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="App_Data\MyPrescriptionEntityDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyPrescriptionEntityDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App_Data\MyPrescriptionEntityDataModel.edmx.diagram">
+      <DependentUpon>MyPrescriptionEntityDataModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\MyPrescriptionEntityDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyPrescriptionEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>MyPrescriptionEntityDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Data\MyPrescriptionEntityDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyPrescriptionEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>MyPrescriptionEntityDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

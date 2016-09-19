@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7bd9585cbcad4c4bb5185df689db54a7" Name="Diagram1">
+        <EntityTypeShape EntityType="MyPrescriptionModel.DoctorMaster" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPrescriptionModel.ErrorLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPrescriptionModel.FileMaster" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPrescriptionModel.HospitalMaster" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPrescriptionModel.RecordTypeMaster" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPrescriptionModel.UserMaster" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPrescriptionModel.VaultMaster" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPrescriptionModel.UserDetail" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_DoctorMaster_HospitalMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_DoctorMaster_UserMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_UserDetails_DoctorMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_VaultMaster_DoctorMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_FileMaster_UserMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_FileMaster_VaultMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_HospitalMaster_UserMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_UserDetails_HospitalMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_VaultMaster_HospitalMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_VaultMaster_RecordTypeMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_UserDetails_UserMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="MyPrescriptionModel.FK_VaultMaster_UserMaster" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
