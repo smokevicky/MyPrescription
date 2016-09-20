@@ -3,11 +3,6 @@ page name: constants.cs
 created date: 17.7.2016
 purose: Keeps all the constants
 **/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyPrescription.Util
 {
@@ -31,9 +26,9 @@ namespace MyPrescription.Util
     {
         public const int initial = -1;
         public const int invalid = 0;
-        public const int valid = 1;        
+        public const int valid = 1;
         public const int error = 2;
-    }    
+    }
 
     public struct ActivationStatusCode
     {
@@ -57,12 +52,12 @@ namespace MyPrescription.Util
     {
         public const int user = 0;
         public const int hospital = 1;
-        public const int doctor = 2;        
+        public const int doctor = 2;
         public const int vault = 3;
         public const int record = 4;
         public const int file = 5;
         public const int defaultId = -1;
-    }    
+    }
 
     public struct ErrorCode
     {
@@ -90,6 +85,8 @@ namespace MyPrescription.Util
         public const string UpdateHospitalDetailsDAL = "UpdateHospitalDetails_LEVEL_DAL";
         public const string CheckActivationStatusDAL = "CheckActivationStatus_LEVEL_DAL";
         public const string SaveFilePhysicallyBL = "SaveFilePhysically_LEVEL_BL";
+        public const string AddNewHospitalEF = "addNewHospital_LEVEL_EF";
+        public const string GetHospitalDetailsEF = "GetHospitalDetails_LEVEL_EF";
 
         public const string APIAddNewDoctor = "AddNewDoctor_LEVEL_API";
         public const string APIGetDoctorDetails = "GetDoctorDetails_LEVEL_API";

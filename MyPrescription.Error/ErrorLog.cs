@@ -1,5 +1,5 @@
-﻿using MyPrescription.Models;
-using MyPrescription.BL;
+﻿using MyPrescription.DAL;
+using MyPrescription.Models;
 using System;
 using System.Web;
 
@@ -38,7 +38,7 @@ namespace MyPrescription.Error
             Int32.TryParse(userIdString, out userId);
             errObject.userId = userId;
 
-            ErrorLogBL.LogError(errObject);
+            ErrorLogDAL.LogError(errObject);
             HttpContext.Current.Response.Redirect("~/Error/Error.aspx", false);
         }
 
@@ -55,7 +55,7 @@ namespace MyPrescription.Error
             errObject.errorMessage = errorMessage;
             errObject.userId = userId;
 
-            ErrorLogBL.LogError(errObject);
+            ErrorLogDAL.LogError(errObject);
             HttpContext.Current.Response.Redirect("~/Error/Error.aspx", false);
         }
     }

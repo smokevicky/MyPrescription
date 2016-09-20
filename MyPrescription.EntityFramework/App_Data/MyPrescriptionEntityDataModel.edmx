@@ -66,15 +66,9 @@
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserDetails">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="FName" />
-            <PropertyRef Name="CreatedOn" />
-            <PropertyRef Name="UpdatedOn" />
-            <PropertyRef Name="Status" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="FName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -86,6 +80,7 @@ warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a pr
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -265,22 +260,9 @@ warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a pr
           <EntitySet Name="FileMaster" EntityType="Self.FileMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HospitalMaster" EntityType="Self.HospitalMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecordTypeMaster" EntityType="Self.RecordTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VaultMaster" EntityType="Self.VaultMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UserDetails].[UserId] AS [UserId], 
-    [UserDetails].[FName] AS [FName], 
-    [UserDetails].[LName] AS [LName], 
-    [UserDetails].[Address] AS [Address], 
-    [UserDetails].[Phone] AS [Phone], 
-    [UserDetails].[HPrimaryMark] AS [HPrimaryMark], 
-    [UserDetails].[DPrimaryMark] AS [DPrimaryMark], 
-    [UserDetails].[CreatedOn] AS [CreatedOn], 
-    [UserDetails].[UpdatedOn] AS [UpdatedOn], 
-    [UserDetails].[Status] AS [Status]
-    FROM [dbo].[UserDetails] AS [UserDetails]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_DoctorMaster_HospitalMaster" Association="Self.FK_DoctorMaster_HospitalMaster">
             <End Role="HospitalMaster" EntitySet="HospitalMaster" />
             <End Role="DoctorMaster" EntitySet="DoctorMaster" />
@@ -407,6 +389,25 @@ warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a pr
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="VaultMasters" Relationship="Self.FK_VaultMaster_RecordTypeMaster" FromRole="RecordTypeMaster" ToRole="VaultMaster" />
         </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="HPrimaryMark" Type="Int32" />
+          <Property Name="DPrimaryMark" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DoctorMaster" Relationship="Self.FK_UserDetails_DoctorMaster" FromRole="UserDetails" ToRole="DoctorMaster" />
+          <NavigationProperty Name="HospitalMaster" Relationship="Self.FK_UserDetails_HospitalMaster" FromRole="UserDetails" ToRole="HospitalMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Self.FK_UserDetails_UserMaster1" FromRole="UserDetails" ToRole="UserMaster" />
+        </EntityType>
         <EntityType Name="UserMaster">
           <Key>
             <PropertyRef Name="UserId" />
@@ -444,28 +445,6 @@ warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a pr
           <NavigationProperty Name="HospitalMaster" Relationship="Self.FK_VaultMaster_HospitalMaster" FromRole="VaultMaster" ToRole="HospitalMaster" />
           <NavigationProperty Name="RecordTypeMaster" Relationship="Self.FK_VaultMaster_RecordTypeMaster" FromRole="VaultMaster" ToRole="RecordTypeMaster" />
           <NavigationProperty Name="UserMaster" Relationship="Self.FK_VaultMaster_UserMaster" FromRole="VaultMaster" ToRole="UserMaster" />
-        </EntityType>
-        <EntityType Name="UserDetail">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="FName" />
-            <PropertyRef Name="CreatedOn" />
-            <PropertyRef Name="UpdatedOn" />
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="HPrimaryMark" Type="Int32" />
-          <Property Name="DPrimaryMark" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="DoctorMaster" Relationship="Self.FK_UserDetails_DoctorMaster" FromRole="UserDetails" ToRole="DoctorMaster" />
-          <NavigationProperty Name="HospitalMaster" Relationship="Self.FK_UserDetails_HospitalMaster" FromRole="UserDetails" ToRole="HospitalMaster" />
-          <NavigationProperty Name="UserMaster" Relationship="Self.FK_UserDetails_UserMaster1" FromRole="UserDetails" ToRole="UserMaster" />
         </EntityType>
         <Association Name="FK_DoctorMaster_HospitalMaster">
           <End Role="HospitalMaster" Type="Self.HospitalMaster" Multiplicity="1" />
@@ -617,9 +596,9 @@ warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a pr
           <EntitySet Name="FileMasters" EntityType="Self.FileMaster" />
           <EntitySet Name="HospitalMasters" EntityType="Self.HospitalMaster" />
           <EntitySet Name="RecordTypeMasters" EntityType="Self.RecordTypeMaster" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
           <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
           <EntitySet Name="VaultMasters" EntityType="Self.VaultMaster" />
-          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
           <AssociationSet Name="FK_DoctorMaster_HospitalMaster" Association="Self.FK_DoctorMaster_HospitalMaster">
             <End Role="HospitalMaster" EntitySet="HospitalMasters" />
             <End Role="DoctorMaster" EntitySet="DoctorMasters" />
@@ -741,6 +720,23 @@ warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="MyPrescriptionModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="HPrimaryMark" ColumnName="HPrimaryMark" />
+                <ScalarProperty Name="DPrimaryMark" ColumnName="DPrimaryMark" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserMasters">
             <EntityTypeMapping TypeName="MyPrescriptionModel.UserMaster">
               <MappingFragment StoreEntitySet="UserMaster">
@@ -767,22 +763,6 @@ warning 6002: The table/view 'MyPrescription.dbo.UserDetails' does not have a pr
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="RecordId" ColumnName="RecordId" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserDetails">
-            <EntityTypeMapping TypeName="MyPrescriptionModel.UserDetail">
-              <MappingFragment StoreEntitySet="UserDetails">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="HPrimaryMark" ColumnName="HPrimaryMark" />
-                <ScalarProperty Name="DPrimaryMark" ColumnName="DPrimaryMark" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>

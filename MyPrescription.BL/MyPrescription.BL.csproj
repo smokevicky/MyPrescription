@@ -48,6 +48,7 @@
     <Compile Include="FileBL.cs" />
     <Compile Include="FileDownloadBL.cs" />
     <Compile Include="ForgotPasswordBL.cs" />
+    <Compile Include="HospitalBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignInBL.cs" />
     <Compile Include="SignUpBL.cs" />
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\MyPrescription.DAL\MyPrescription.DAL.csproj">
       <Project>{d3184237-5bf2-4897-8769-20a57727fa99}</Project>
       <Name>MyPrescription.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyPrescription.EntityFramework\MyPrescription.EntityFramework.csproj">
+      <Project>{a8b41586-c0bf-4b46-8aa0-d50320593aee}</Project>
+      <Name>MyPrescription.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyPrescription.Models\MyPrescription.Models.csproj">
       <Project>{7b8f9ecc-7432-4a43-839b-80062ab07b78}</Project>

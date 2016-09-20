@@ -1,4 +1,4 @@
-﻿using MyPrescription.DAL;
+﻿using MyPrescription.BL;
 using MyPrescription.Models;
 using MyPrescription.Util;
 using System;
@@ -26,7 +26,7 @@ namespace MyPrescription.API.Controller
                 hospitalModelObject.hospitalId = hospitalId;
                 hospitalModelObject.userId = Convert.ToInt32(userId);
 
-                returnVal = new HospitalDAL().AddNewHospital(hospitalModelObject);
+                returnVal = HospitalBL.AddNewHospital(hospitalModelObject);
             }
 
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace MyPrescription.API.Controller
 
             try
             {
-                hospitalResponseModelObject = new HospitalDAL().GetHospitalDetails(hospitalRequestModelObject);
+                hospitalResponseModelObject = HospitalBL.GetHospitalDetails(hospitalRequestModelObject);
             }
 
             catch (Exception ex)
@@ -76,7 +76,7 @@ namespace MyPrescription.API.Controller
 
             try
             {
-                returnVal = new HospitalDAL().DeleteHospital(hospitalModelObject);
+                returnVal = HospitalBL.DeleteHospital(hospitalModelObject);
             }
 
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace MyPrescription.API.Controller
 
             try
             {
-                hospitalModelObject = new HospitalDAL().GetSingleHospitalDetails(hospitalModelObject);
+                hospitalModelObject = HospitalBL.GetSingleHospitalDetails(hospitalModelObject);
             }
 
             catch (Exception ex)
@@ -125,7 +125,7 @@ namespace MyPrescription.API.Controller
 
             try
             {
-                returnVal = new HospitalDAL().UpdateHospitalDetails(hospitalModelObject);
+                returnVal = HospitalBL.UpdateHospitalDetails(hospitalModelObject);
             }
 
             catch (Exception ex)

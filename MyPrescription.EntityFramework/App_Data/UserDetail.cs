@@ -24,6 +24,7 @@ namespace MyPrescription.EntityFramework.App_Data
         public System.DateTime CreatedOn { get; set; }
         public System.DateTime UpdatedOn { get; set; }
         public string Status { get; set; }
+        public int Id { get; set; }
     
         public virtual DoctorMaster DoctorMaster { get; set; }
         public virtual HospitalMaster HospitalMaster { get; set; }

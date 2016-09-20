@@ -9,8 +9,9 @@
 
 namespace MyPrescription.EntityFramework.App_Data
 {
+    using System;
     using System.Collections.Generic;
-
+    
     public partial class DoctorMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,7 @@ namespace MyPrescription.EntityFramework.App_Data
             this.UserDetails = new HashSet<UserDetail>();
             this.VaultMasters = new HashSet<VaultMaster>();
         }
-
+    
         public int DoctorId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -31,7 +32,7 @@ namespace MyPrescription.EntityFramework.App_Data
         public System.DateTime CreatedOn { get; set; }
         public System.DateTime UpdatedOn { get; set; }
         public string Status { get; set; }
-
+    
         public virtual HospitalMaster HospitalMaster { get; set; }
         public virtual UserMaster UserMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

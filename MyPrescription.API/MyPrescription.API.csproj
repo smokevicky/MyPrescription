@@ -78,10 +78,6 @@
       <Project>{df3977ef-62d4-4e82-aff1-fc561f6d2762}</Project>
       <Name>MyPrescription.BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyPrescription.DAL\MyPrescription.DAL.csproj">
-      <Project>{d3184237-5bf2-4897-8769-20a57727fa99}</Project>
-      <Name>MyPrescription.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyPrescription.Error\MyPrescription.Error.csproj">
       <Project>{54784b83-a164-4efc-9509-c6a7fef97710}</Project>
       <Name>MyPrescription.Error</Name>

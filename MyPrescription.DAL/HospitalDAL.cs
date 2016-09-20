@@ -14,8 +14,8 @@ namespace MyPrescription.DAL
         /// </summary>
         /// <param name="hospitalModelObject"></param>
         /// <returns>bool</returns>
-        public bool AddNewHospital(HospitalModel hospitalModelObject)
-        {            
+        public static bool AddNewHospital(HospitalModel hospitalModelObject)
+        {
             SqlUtility sqlUtilityObject = new SqlUtility();
 
             try
@@ -53,14 +53,14 @@ namespace MyPrescription.DAL
             {
                 sqlUtilityObject.con.Close();
             }
-        }        
+        }
 
         /// <summary>
         /// Gets hospital details from db corresponding to specific user
         /// </summary>
         /// <param name="hospitalRequestModelObject">Passing page start, page size</param>
         /// <returns></returns>
-        public HospitalResponseModel GetHospitalDetails(HospitalRequestModel hospitalRequestModelObject)
+        public static HospitalResponseModel GetHospitalDetails(HospitalRequestModel hospitalRequestModelObject)
         {
             HospitalResponseModel hospitalResponseModelObject = new HospitalResponseModel();
             SqlUtility sqlUtilityObject = new SqlUtility();
@@ -78,13 +78,15 @@ namespace MyPrescription.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (!reader.HasRows)
                 {
-                    hospitalResponseModelObject.statusCode = StatusCode.invalid;        //invalid = 0 : No Hospitals
+                    //invalid = 0 : No Hospitals
+                    hospitalResponseModelObject.statusCode = StatusCode.invalid;
                 }
                 else
                 {
-                    hospitalResponseModelObject.statusCode = SignInStatusCode.valid;                      //valid = 1 : Hospitals exist
+                    //valid = 1 : Hospitals exist
+                    hospitalResponseModelObject.statusCode = SignInStatusCode.valid;
                     var hospitalList = new List<HospitalModel>();
-                    
+
                     //to fetch list of hospital details
                     while (reader.Read())
                     {
@@ -113,7 +115,8 @@ namespace MyPrescription.DAL
 
             catch (Exception ex)
             {
-                hospitalResponseModelObject.statusCode = StatusCode.error;        //invalid = 2 : Error
+                //invalid = 2 : Error
+                hospitalResponseModelObject.statusCode = StatusCode.error;
                 hospitalResponseModelObject.error = ex.ToString();
             }
             finally
@@ -129,7 +132,7 @@ namespace MyPrescription.DAL
         /// </summary>
         /// <param name="hospitalId"></param>
         /// <returns>True or False</returns>
-        public bool DeleteHospital(HospitalModel hospitalModelObject)
+        public static bool DeleteHospital(HospitalModel hospitalModelObject)
         {
             bool returnVal;
 
@@ -146,7 +149,7 @@ namespace MyPrescription.DAL
 
                 cmd.ExecuteNonQuery();
 
-                returnVal = true;   
+                returnVal = true;
             }
 
             catch (Exception ex)
@@ -172,7 +175,7 @@ namespace MyPrescription.DAL
         /// </summary>
         /// <param name="hospitalId"></param>
         /// <returns>HospitalModel Object</returns>
-        public HospitalModel GetSingleHospitalDetails(HospitalModel hospitalModelObject)
+        public static HospitalModel GetSingleHospitalDetails(HospitalModel hospitalModelObject)
         {
             HospitalModel hospitalReturnModelObject = new HospitalModel();
 
@@ -197,7 +200,7 @@ namespace MyPrescription.DAL
                     hospitalReturnModelObject.statusCode = StatusCode.valid;           //valid = 1 : Hospital exists
 
                     while (reader.Read())
-                    {                                                                        
+                    {
                         hospitalReturnModelObject.name = reader["Name"].ToString();
                         hospitalReturnModelObject.address = reader["Address"].ToString();
                         hospitalReturnModelObject.phoneNo = reader["Phone"].ToString();
@@ -228,7 +231,7 @@ namespace MyPrescription.DAL
         /// </summary>
         /// <param name="hospitalModelObject"></param>
         /// <returns>true or false</returns>
-        public bool UpdateHospitalDetails(HospitalModel hospitalModelObject)
+        public static bool UpdateHospitalDetails(HospitalModel hospitalModelObject)
         {
             bool returnVal;
 

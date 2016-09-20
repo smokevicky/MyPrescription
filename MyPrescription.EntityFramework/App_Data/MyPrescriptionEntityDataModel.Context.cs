@@ -30,8 +30,8 @@ namespace MyPrescription.EntityFramework.App_Data
         public virtual DbSet<FileMaster> FileMasters { get; set; }
         public virtual DbSet<HospitalMaster> HospitalMasters { get; set; }
         public virtual DbSet<RecordTypeMaster> RecordTypeMasters { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<VaultMaster> VaultMasters { get; set; }
-        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }
