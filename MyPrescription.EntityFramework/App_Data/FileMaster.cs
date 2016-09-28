@@ -9,9 +9,7 @@
 
 namespace MyPrescription.EntityFramework.App_Data
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class FileMaster
     {
         public int FileId { get; set; }

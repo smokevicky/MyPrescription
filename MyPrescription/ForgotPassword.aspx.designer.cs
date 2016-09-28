@@ -7,9 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyPrescription {
-    
-    
+namespace MyPrescription
+{
+
+
     public partial class ForgotPassword {
         
         /// <summary>

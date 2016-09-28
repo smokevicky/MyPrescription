@@ -37,7 +37,9 @@ namespace MyPrescription.BL
         /// <returns></returns>
         public static bool DeleteHospital(HospitalModel hospitalModelObject)
         {
-            return HospitalDAL.DeleteHospital(hospitalModelObject);
+            //return HospitalDAL.DeleteHospital(hospitalModelObject);
+
+            return HospitalEF.DeleteHospital(hospitalModelObject);
         }
 
         /// <summary>
@@ -47,7 +49,9 @@ namespace MyPrescription.BL
         /// <returns></returns>
         public static HospitalModel GetSingleHospitalDetails(HospitalModel hospitalModelObject)
         {
-            return HospitalDAL.GetSingleHospitalDetails(hospitalModelObject);
+            //return HospitalDAL.GetSingleHospitalDetails(hospitalModelObject);
+
+            return HospitalEF.GetSingleHospitalDetails(hospitalModelObject);
         }
 
         /// <summary>

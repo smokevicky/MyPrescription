@@ -10,7 +10,6 @@ using MyPrescription.Error;
 using MyPrescription.Models;
 using MyPrescription.Util;
 using System;
-using System.IO;
 using System.Web;
 using System.Web.Http;
 

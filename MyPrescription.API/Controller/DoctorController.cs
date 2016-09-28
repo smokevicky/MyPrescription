@@ -1,9 +1,9 @@
 ﻿using MyPrescription.BL;
+using MyPrescription.Error;
 using MyPrescription.Models;
 using MyPrescription.Util;
 using System;
 using System.Web.Http;
-using MyPrescription.Error;
 
 namespace MyPrescription.API.Controller
 {

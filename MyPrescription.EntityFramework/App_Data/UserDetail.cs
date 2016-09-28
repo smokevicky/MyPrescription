@@ -10,8 +10,7 @@
 namespace MyPrescription.EntityFramework.App_Data
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class UserDetail
     {
         public int UserId { get; set; }

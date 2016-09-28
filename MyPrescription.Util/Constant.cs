@@ -87,6 +87,9 @@ namespace MyPrescription.Util
         public const string SaveFilePhysicallyBL = "SaveFilePhysically_LEVEL_BL";
         public const string AddNewHospitalEF = "addNewHospital_LEVEL_EF";
         public const string GetHospitalDetailsEF = "GetHospitalDetails_LEVEL_EF";
+        public const string DeleteHospitalEF = "DeleteHospital_LEVEL_EF";
+        public const string GetSingleHospitalDetailsEF = "GetSingleHospitalDetails_LEVEL_EF";
+        public const string UpdateHospitalEF = "UpdateHospital_LEVEL_EF";
 
         public const string APIAddNewDoctor = "AddNewDoctor_LEVEL_API";
         public const string APIGetDoctorDetails = "GetDoctorDetails_LEVEL_API";

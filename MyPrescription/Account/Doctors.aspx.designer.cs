@@ -7,9 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyPrescription.Account {
-    
-    
+namespace MyPrescription.Account
+{
+
+
     public partial class Doctors {
         
         /// <summary>

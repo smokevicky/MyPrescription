@@ -10,8 +10,7 @@
 namespace MyPrescription.EntityFramework.App_Data
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class ErrorLog
     {
         public int Id { get; set; }

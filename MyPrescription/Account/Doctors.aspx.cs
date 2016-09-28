@@ -36,7 +36,7 @@ namespace MyPrescription.Account
             catch (NullReferenceException)
             {
                 Response.Redirect("../SignIn.aspx", false);
-            }            
-        }        
+            }
+        }
     }
 }

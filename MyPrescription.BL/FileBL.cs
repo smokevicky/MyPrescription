@@ -1,4 +1,11 @@
-﻿using MyPrescription.DAL;
+﻿/********************************************************
+** FileName:   FileBL.cs
+** Author:     Jyoti Prakash Jena
+** Date:       --
+** Purpose:    Handle BL calls for files
+********************************************************/
+
+using MyPrescription.DAL;
 using MyPrescription.Models;
 using MyPrescription.Util;
 using System;
@@ -7,6 +14,9 @@ using System.Web;
 
 namespace MyPrescription.BL
 {
+    /// <summary>
+    /// Handle BL calls for files
+    /// </summary>
     public class FileBL
     {
         /// <summary>
@@ -42,13 +52,15 @@ namespace MyPrescription.BL
             {
                 string fileName, folderPath, vaultPath, fileNamePath;
                 int fileId, fileCountFlag = 0;
+                HttpPostedFile file;
+                FileModel fileModelObject;
 
                 for (int i = 0; i < files.Count; i++)
                 {
-                    HttpPostedFile file = files[i];
+                    file = files[i];
                     fileName = System.IO.Path.GetFileName(file.FileName);
 
-                    FileModel fileModelObject = new FileModel();
+                    fileModelObject = new FileModel();
                     fileModelObject.fileName = fileName;
                     fileModelObject.userId = userId;
                     fileModelObject.vaultId = vaultId;
@@ -69,12 +81,9 @@ namespace MyPrescription.BL
                     fileCountFlag++;
                 }
 
-                if (fileCountFlag == files.Count)
-                {
-                    return true;
-                }
+                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorLogModel errorLogModelObject = new ErrorLogModel();
                 errorLogModelObject.errorCode = ErrorCode.SaveFilePhysicallyBL;

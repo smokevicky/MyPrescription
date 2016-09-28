@@ -129,6 +129,7 @@
     <Content Include="Account\Doctors.aspx" />
     <Content Include="Account\Signout.aspx" />
     <Content Include="Account\Vault.aspx" />
+    <Content Include="Account\WebForm1.aspx" />
     <Content Include="CSS\Account\Doctors.css" />
     <Content Include="CSS\Account\Hospitals.css" />
     <Content Include="CSS\Account\Profile.css" />
@@ -158,6 +159,7 @@
     <Content Include="Account\Account.Master" />
     <Content Include="FileHandlers\DocHandler.ashx" />
     <Content Include="FileHandlers\PdfAndImageHandler.ashx" />
+    <Content Include="MyPrescription.licenseheader" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -256,6 +258,13 @@
     </Compile>
     <Compile Include="Account\Vault.aspx.designer.cs">
       <DependentUpon>Vault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

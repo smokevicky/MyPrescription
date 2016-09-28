@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/********************************************************
+** FileName:    FileDAL.cs
+** Author:      Jyoti Prakash Jena
+** Date:        --
+** Purpose:     Handle db operations for files
+********************************************************/
+
 using MyPrescription.Models;
 using MyPrescription.Util;
-using System.Data.SqlClient;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace MyPrescription.DAL
 {
+    /// <summary>
+    /// Handle db operations for files
+    /// </summary>
     public class FileDAL
     {
         /// <summary>

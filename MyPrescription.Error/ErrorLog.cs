@@ -1,27 +1,22 @@
-﻿using MyPrescription.DAL;
+﻿/********************************************************
+** FileName:    ErrorLog.cs
+** Author:      Jyoti Prakash Jena
+** Date:        --
+** Purpose:     Log errors into db
+********************************************************/
+
+using MyPrescription.DAL;
 using MyPrescription.Models;
 using System;
 using System.Web;
 
 namespace MyPrescription.Error
 {
+    /// <summary>
+    /// Log errors into db
+    /// </summary>
     public class ErrorLog
     {
-        /// <summary>
-        /// LogsErrors into the database
-        /// </summary>
-        /// <param name="errorCode">Accepts string Error Code</param>
-        /// <param name="errorMessage">Accepts string Error Message</param>
-        /*public static void LogError(string errorCode, string errorMessage)
-        {
-            ErrorLogModel errObject = new ErrorLogModel();
-            errObject.errorCode = errorCode;
-            errObject.errorMessage = errorMessage;
-
-            ErrorLogBL.LogError(errObject);
-            HttpContext.Current.Response.Redirect("~/Error/Error.aspx", false);
-        }*/
-
         /// <summary>
         /// LogsErrors into the database
         /// </summary>

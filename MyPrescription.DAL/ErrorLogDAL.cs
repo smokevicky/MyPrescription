@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyPrescription.Models;
 using MyPrescription.Util;
-using System.Data.SqlClient;
+using System;
 using System.Data;
-using MyPrescription.Models;
+using System.Data.SqlClient;
 using System.IO;
 using System.Web;
 

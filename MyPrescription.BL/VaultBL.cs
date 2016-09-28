@@ -1,5 +1,4 @@
-﻿using System;
-using MyPrescription.DAL;
+﻿using MyPrescription.DAL;
 using MyPrescription.Models;
 
 namespace MyPrescription.BL
