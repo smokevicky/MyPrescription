@@ -127,12 +127,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CSS\Site-Account.css" />
+    <Content Include="CSS\bootstrap.css" />
+    <Content Include="CSS\Site-NonAccount.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Resources\Images\404.gif" />
+    <Content Include="Resources\Images\bg_header.jpg" />
+    <Content Include="Resources\Images\geometricBackground1.jpg" />
+    <Content Include="Resources\Images\InvalidToken.gif" />
+    <Content Include="Resources\Images\logo.long.png" />
+    <Content Include="Resources\Images\logo.png" />
+    <Content Include="Resources\Images\mac.jpg" />
+    <Content Include="Resources\Images\ripple.gif" />
+    <Content Include="Resources\Images\signInLoad.gif" />
+    <Content Include="Resources\ProfilePictures\default.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

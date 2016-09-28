@@ -13,6 +13,7 @@ namespace MyPrescription.MVC.Controllers
         // GET: About
         public ActionResult About()
         {
+            ViewBag.Message = "You message here";
             return View();
         }
 

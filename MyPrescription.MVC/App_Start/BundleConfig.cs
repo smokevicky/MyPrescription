@@ -22,9 +22,18 @@ namespace MyPrescription.MVC
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Css/NonAccount").Include(
+                      "~/CSS/bootstrap.css",
+                      "~/CSS/Site-NonAccount.css"
+                      ));
+
+            bundles.Add(new StyleBundle("~/Css/Account").Include(
+                      "~/CSS/bootstrap.css",
+                      "~/CSS/Site-Account.css"
+                      ));
+
+            //disable optimization for debugging purposes
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
