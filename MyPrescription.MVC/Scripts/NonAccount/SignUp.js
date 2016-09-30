@@ -62,7 +62,6 @@
                 $("#popover-emailCheck-content").html("<img height='35' src='/Resources/Images/ripple.gif' /> Please wait a moment...");
                 $('#signupEmail').popover('show');
 
-                var testApiHost = "//localhost:8080";
                 setTimeout(function () {
                     $.ajax({
                         type: "GET",
@@ -124,7 +123,32 @@
         if (isEmailValid == true) {
             if (pwd.length >= 8) {
                 if (pwd == pwdc) {
-                    $("#signupFrmSubmitServer").click();
+
+                    var userModelObject = {
+                        firstName : fname,
+                        lastName : lname,
+                        email: email,
+                        password: pwd
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/nonaccount/AddNewUser",
+                        data: JSON.stringify(userModelObject),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data == true) {
+                                window.location.href = "/NonAccount/SignUpStep2";
+                            }
+                            else {
+                                alert("failure");
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        }
+                    });
                 }
                 else {
                     $('#popover-passwordConfirm').popover('show');

@@ -111,4 +111,10 @@ namespace MyPrescription.Util
         public const string APIDeleteVault = "DeleteVault_LEVEL_API";
         public const string APIGetSingleVaultDetails = "GetSingleVaultDetails_LEVEL_API";
     }
+
+    public struct ActionResultStatusCode
+    {
+        public const string True = "true";
+        public const string False = "false";
+    }
 }
