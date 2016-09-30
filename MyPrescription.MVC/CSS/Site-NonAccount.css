@@ -1,4 +1,10 @@
-﻿
+﻿/********************************************************
+** FileName:    Site-NonAccount.cs
+** Author:      Jyoti Prakash Jena
+** Date:        28.9.2016
+** Purpose:     Keeps all the styles related to Non-Account Pages.
+********************************************************/
+
 .navbar-inverse { border-radius: 0; 
 				  background:rgba(38, 50, 56, 0.9); 
 				  border-bottom:1px solid rgba(255, 255, 255, 0.15); 
@@ -130,7 +136,7 @@
 	.footer1 { height:7vh;}
 	.form { width:360px;}
 	#head .col-sm-5{margin-top:10px;}
-	.navbar-brand:after { content:'My Prescription'; }
+	/*.navbar-brand:after { content:'My Prescription'; }*/
 	.footer2 { text-align:left; }
 	.text-right { text-align:right; }
 }

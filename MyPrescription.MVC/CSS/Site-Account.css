@@ -1,4 +1,11 @@
-﻿@media screen and (max-width: 767px) {
+﻿/********************************************************
+** FileName:    Site-Account.cs
+** Author:      Jyoti Prakash Jena
+** Date:        28.9.2016
+** Purpose:     Keeps all the styles related to Account Pages.
+********************************************************/
+
+@media screen and (max-width: 767px) {
     .SideNavigation {
         height: auto;
         padding: 15px;

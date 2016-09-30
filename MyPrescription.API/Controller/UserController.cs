@@ -24,12 +24,12 @@ namespace MyPrescription.API.Controller
         /// <returns>
         ///   <c>true</c> if the specified string value is available; otherwise, <c>false</c>.
         /// </returns>
-        [HttpGet]
-        public bool isAvailable(string stringValue)
+        [HttpPost]
+        public bool isAvailable(TesUserModel testUserModel)
         {
             try
             {
-                string email = stringValue;
+                string email = testUserModel.email;
                 SqlUtility sqlUtilityObject = new SqlUtility();
 
                 SqlCommand cmd = new SqlCommand("SELECT UserId FROM UserMaster WHERE EMail = @email ");

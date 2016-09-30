@@ -49,6 +49,7 @@ namespace MyPrescription.DAL
                         userModelReturnObject.firstName = reader["FName"].ToString();
                         userModelReturnObject.lastName = reader["LName"].ToString();
                         userModelReturnObject.phone = reader["Phone"].ToString();
+                        userModelReturnObject.token = reader["Token"].ToString();
                     }
                 }
             }

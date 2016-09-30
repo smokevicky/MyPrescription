@@ -38,9 +38,9 @@ namespace MyPrescription.Util
     /// </summary>
     public struct EmailTemplates
     {
-        public const string emailVerificationHTML = "EmailTemplates/VerificationEmail.html";
-        public const string successfulVerificationHTML = "EmailTemplates/SuccessfulVerification.html";
-        public const string forgotPasswordHTML = "EmailTemplates/ForgotPasswordEmail.html";
-        public const string successfulPasswordResetHTML = "EmailTemplates/SuccessfulPasswordReset.html";
+        public const string emailVerificationHTML = "~/EmailTemplates/VerificationEmail.html";
+        public const string successfulVerificationHTML = "~/EmailTemplates/SuccessfulVerification.html";
+        public const string forgotPasswordHTML = "~/EmailTemplates/ForgotPasswordEmail.html";
+        public const string successfulPasswordResetHTML = "~/EmailTemplates/SuccessfulPasswordReset.html";
     }
 }

@@ -7,32 +7,48 @@ namespace MyPrescription.MVC
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.UseCdn = true;   //enable CDN support
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/Libraries/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/Libraries/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/Scripts/Libraries/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/Libraries/bootstrap.js",
+                      "~/Scripts/Libraries/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/customLibraries").Include(
+                    "~/Scripts/CustomLibraries/Headroom.min.js",
+                    "~/Scripts/CustomLibraries/jQuery.headroom.min.js"));
+
+            bundles.Add(new StyleBundle("~/Css/Generic").Include(
+                    "~/CSS/bootstrap.css"
+                      ));
 
             bundles.Add(new StyleBundle("~/Css/NonAccount").Include(
-                      "~/CSS/bootstrap.css",
                       "~/CSS/Site-NonAccount.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Css/Account").Include(
-                      "~/CSS/bootstrap.css",
                       "~/CSS/Site-Account.css"
                       ));
 
-            //disable optimization for debugging purposes
+            bundles.Add(new ScriptBundle("~/bundles/NonAccount/SignIn").Include(
+                    "~/Scripts/NonAccount/SignIn.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/NonAccount/SignUp").Include(
+                    "~/Scripts/NonAccount/SignUp.js"
+                ));
+
+            //EnableOptimizations:false - disable optimization for debugging purposes
             BundleTable.EnableOptimizations = false;
         }
     }

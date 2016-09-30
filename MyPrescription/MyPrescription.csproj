@@ -159,7 +159,6 @@
     <Content Include="Account\Account.Master" />
     <Content Include="FileHandlers\DocHandler.ashx" />
     <Content Include="FileHandlers\PdfAndImageHandler.ashx" />
-    <Content Include="MyPrescription.licenseheader" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

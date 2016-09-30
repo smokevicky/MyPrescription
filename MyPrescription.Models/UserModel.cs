@@ -40,5 +40,11 @@
             updatedOn = null;
             error = null;
         }
+
+    }
+
+    public class TesUserModel
+    {
+        public string email { get; set; }
     }
 }

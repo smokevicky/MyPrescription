@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Registration Step 2";
+}
+
+<div class="top-margin"></div>
+<div class="container">
+    <div class="row register-row">
+
+        <!-- Article main content -->
+        <article class="col-xs-12 maincontent">
+
+            <header class="page-header">
+                <h1 class="page-title">Awaiting Email Verification</h1>
+            </header>
+
+            <div class="col-sm-12">
+                <p>You have successfully completed the 1st Step of <b>Registration</b>.</p>
+                <p>A mail with the verification message has been sent to your registered EMail-ID : <b>@Html.Raw(Session["email"].ToString())</b>.</p>
+                <p>Kindly check your Email and click on the <button class="btn btn-info">VERIFY</button> button to activate your account.</p>
+            </div>
+
+        </article>
+        <!-- /Article -->
+    </div>
+</div>	<!-- /container -->

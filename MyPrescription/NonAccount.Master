@@ -4,96 +4,98 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="My Doctor. My Prescription." />
-	<meta name="author"      content="Jyoti Prakash Jena" />	
+	<meta name="author"      content="Jyoti Prakash Jena" />
 
-    <link rel="shortcut icon" href="/Resources/Images/logo.png" />
-	    
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />   
-    <link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css' />
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400italic' rel='stylesheet' type='text/css' />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="/Resources/Images/logo.png" />
+	
+	<!--Font CDNs-->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
+	<link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css' />
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400italic' rel='stylesheet' type='text/css' />
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
 
 	<!-- Custom styles -->
-    <link href="CSS/Theme.css" rel="stylesheet" />
-    <link href="CSS/SignIn.css" rel="stylesheet" />    
+	<link href="CSS/Theme.css" rel="stylesheet" />
+	<link href="CSS/SignIn.css" rel="stylesheet" />
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+	<asp:ContentPlaceHolder ID="head" runat="server">
+	</asp:ContentPlaceHolder>
 </head>
 <body>
 
-    <!-- Fixed navbar -->
+	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>                
 				<a class="navbar-brand" href="SignIn.aspx"><img src="Resources/Images/logo.png" height="50" alt="My Prescription Logo" /></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a href="SignIn.aspx">Home</a></li>
-					<li><a href="about.aspx">About</a></li>					
-					<li><a href="contactus.aspx">Contact Us</a></li>					
+					<li><a href="about.aspx">About</a></li>
+					<li><a href="contactus.aspx">Contact Us</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div> 
 	<!-- /navbar -->
 
-    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>     
 
-    <!-- Custom Js -->	
-    <script src="Scripts/Headroom.min.js"></script>
-    <script src="Scripts/jQuery.headroom.min.js"></script>    
-    <script src="Scripts/Master.js"></script>
+	<!-- Custom Js -->	
+	<script src="Scripts/Headroom.min.js"></script>
+	<script src="Scripts/jQuery.headroom.min.js"></script>
+	<script src="Scripts/Master.js"></script>
 
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            
-        </asp:ContentPlaceHolder>
-    </div>
+	<div>
+		<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+			
+		</asp:ContentPlaceHolder>
+	</div>
 
-    <!-- Fixed footer -->
-    <footer id="footer" class="top-space"> 
-	    <div class="footer2">
-		    <div class="container">
-			    <div class="row">
+	<!-- Fixed footer -->
+	<footer id="footer" class="top-space"> 
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
 					
-				    <div class="col-md-6 widget">
-					    <div class="widget-body">
-						    <p class="simplenav">
-							    <a href="SignIn.aspx">Home</a> | 
-							    <a href="about.aspx">About</a> |		
-                                <b><a href="privacy.aspx">Privacy Policy</a></b> |
-							    <a href="contactus.aspx">Contact Us</a> 
-						    </p>
-					    </div>
-				    </div>
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav">
+								<a href="SignIn.aspx">Home</a> | 
+								<a href="about.aspx">About</a> |		
+								<b><a href="privacy.aspx">Privacy Policy</a></b> |
+								<a href="contactus.aspx">Contact Us</a> 
+							</p>
+						</div>
+					</div>
 
-				    <div class="col-md-6 widget">
-					    <div class="widget-body">
-						    <p class="text-right">
-							    Copyright &copy; 2016, My Prescription. Designed by <a href="http://www.meetvicky.com/" target="_blank">Jyoti Prakash Jena</a> 
-						    </p>
-					    </div>
-				    </div>
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right">
+								Copyright &copy; 2016, My Prescription. Designed by <a href="http://www.meetvicky.com/" target="_blank">Jyoti Prakash Jena</a> 
+							</p>
+						</div>
+					</div>
 
-			    </div> <!-- /row of widgets -->
-		    </div>
-	    </div>
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
 	</footer>	
-    <!-- /footer -->    
+	<!-- /footer -->    
   
 </body>
 </html>

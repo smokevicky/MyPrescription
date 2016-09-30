@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Code7248.word_reader">
+      <HintPath>..\MyPrescription\bin\Code7248.word_reader.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -52,12 +55,32 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -120,7 +143,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyPrescription.API\UserAPIController.cs" />
+    <Compile Include="Controllers\NonAccountController.cs" />
+    <Compile Include="FileHandlers\DocHandler.ashx.cs">
+      <DependentUpon>DocHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="FileHandlers\PdfAndImageHandler.ashx.cs">
+      <DependentUpon>PdfAndImageHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -130,8 +163,11 @@
     <Content Include="CSS\Site-Account.css" />
     <Content Include="CSS\bootstrap.css" />
     <Content Include="CSS\Site-NonAccount.css" />
+    <Content Include="EmailTemplates\ForgotPasswordEmail.html" />
+    <Content Include="EmailTemplates\SuccessfulPasswordReset.html" />
+    <Content Include="EmailTemplates\successfulVerification.html" />
+    <Content Include="EmailTemplates\verificationEmail.html" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Resources\Images\404.gif" />
     <Content Include="Resources\Images\bg_header.jpg" />
@@ -143,20 +179,35 @@
     <Content Include="Resources\Images\ripple.gif" />
     <Content Include="Resources\Images\signInLoad.gif" />
     <Content Include="Resources\ProfilePictures\default.jpg" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\Account\Dashboard.js" />
+    <Content Include="Scripts\Account\Doctors.js" />
+    <Content Include="Scripts\Account\Hospitals.js" />
+    <Content Include="Scripts\Account\Master.js" />
+    <Content Include="Scripts\Account\Profile.js" />
+    <Content Include="Scripts\Account\Vault.js" />
+    <Content Include="Scripts\CustomLibraries\Headroom.min.js" />
+    <Content Include="Scripts\CustomLibraries\jQuery.headroom.min.js" />
+    <Content Include="Scripts\Libraries\bootstrap.js" />
+    <Content Include="Scripts\Libraries\bootstrap.min.js" />
+    <Content Include="FileHandlers\DocHandler.ashx" />
+    <Content Include="FileHandlers\PdfAndImageHandler.ashx" />
+    <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Libraries\jquery-1.10.2.js" />
+    <Content Include="Scripts\Libraries\jquery-1.10.2.min.js" />
+    <None Include="Scripts\Libraries\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.min.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Libraries\modernizr-2.6.2.js" />
+    <Content Include="Scripts\NonAccount\EnterNewPassword.js" />
+    <Content Include="Scripts\NonAccount\ForgotPassword.js" />
+    <Content Include="Scripts\NonAccount\Master.js" />
+    <Content Include="Scripts\NonAccount\SignIn.js" />
+    <Content Include="Scripts\Libraries\respond.js" />
+    <Content Include="Scripts\Libraries\respond.min.js" />
+    <Content Include="Scripts\Libraries\_references.js" />
+    <Content Include="Scripts\NonAccount\SignUp.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -165,24 +216,56 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_NonAccountLayout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\NonAccount\SignUp.cshtml" />
+    <Content Include="Views\NonAccount\_ViewStart.cshtml" />
+    <Content Include="Views\NonAccount\ForgotPassword.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\NonAccount\SignUpStep2.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\NonAccount\InvalidToken.cshtml" />
+    <Content Include="Views\NonAccount\Verify.cshtml" />
+    <Content Include="Views\NonAccount\AlreadyActivated.cshtml" />
+    <Content Include="Views\NonAccount\TermsAndConditions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\Libraries\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyPrescription.API\MyPrescription.API.csproj">
+      <Project>{4dd33af2-67c1-45f1-abba-c1b4c8c8811d}</Project>
+      <Name>MyPrescription.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyPrescription.BL\MyPrescription.BL.csproj">
+      <Project>{df3977ef-62d4-4e82-aff1-fc561f6d2762}</Project>
+      <Name>MyPrescription.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyPrescription.Error\MyPrescription.Error.csproj">
+      <Project>{54784b83-a164-4efc-9509-c6a7fef97710}</Project>
+      <Name>MyPrescription.Error</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyPrescription.Models\MyPrescription.Models.csproj">
+      <Project>{7b8f9ecc-7432-4a43-839b-80062ab07b78}</Project>
+      <Name>MyPrescription.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyPrescription.Util\MyPrescription.Util.csproj">
+      <Project>{0b0fa680-49e3-4798-bf87-1b3b9de7e7fa}</Project>
+      <Name>MyPrescription.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
