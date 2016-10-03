@@ -48,6 +48,14 @@ namespace MyPrescription.MVC
                     "~/Scripts/NonAccount/SignUp.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/NonAccount/ForgotPassword").Include(
+                    "~/Scripts/NonAccount/ForgotPassword.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/NonAccount/EnterNewPassword").Include(
+                    "~/Scripts/NonAccount/EnterNewPassword.js"
+                ));
+
             //EnableOptimizations:false - disable optimization for debugging purposes
             BundleTable.EnableOptimizations = false;
         }

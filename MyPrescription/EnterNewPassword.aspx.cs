@@ -9,8 +9,8 @@ namespace MyPrescription
     public partial class EnterNewPassword : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {            
-            if(Session["token"] == null)
+        {
+            if (Session["token"] == null)
             {
                 Response.Redirect("InvalidToken.aspx", false);
             }
@@ -32,19 +32,19 @@ namespace MyPrescription
                     UserModel userModelReturnObject = new UserModel();
                     EnterNewPasswordBL enterNewPasswordBLObject = new EnterNewPasswordBL();
                     userModelReturnObject = enterNewPasswordBLObject.ResetPassword(userModelObject);
-                    
-                    if(userModelReturnObject.statusCode == StatusCode.invalid)
+
+                    if (userModelReturnObject.statusCode == StatusCode.invalid)
                     {
                         LargeText.InnerHtml = "<span style='color:red'>Password reset Unsuccessful</span>";
                         FinalOutputDiv.InnerHtml = "";
                         Response.Redirect("InvalidToken.aspx", false);
                     }
-                    else if(userModelReturnObject.statusCode == StatusCode.valid)
+                    else if (userModelReturnObject.statusCode == StatusCode.valid)
                     {
                         //Send Email
                         EmailModel emailModelObject = new EmailModel();
                         EmailUtility emailUtilityObject = new EmailUtility();
-                       
+
                         string body = System.IO.File.ReadAllText(Server.MapPath(EmailTemplates.successfulPasswordResetHTML));//Get HTML form EmailTemplate
                         body = body.Replace("#FULL_NAME", userModelReturnObject.firstName + " " + userModelReturnObject.lastName);                                                                     //replacing #TAGs in HTML
                         body = body.Replace("#EMAIL", userModelReturnObject.email);
@@ -74,7 +74,7 @@ namespace MyPrescription
                     }
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     ErrorLog.LogError(ErrorCode.ResetPAGE, ex.ToString());
                 }

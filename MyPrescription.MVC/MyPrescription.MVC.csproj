@@ -233,6 +233,8 @@
     <Content Include="Views\NonAccount\Verify.cshtml" />
     <Content Include="Views\NonAccount\AlreadyActivated.cshtml" />
     <Content Include="Views\NonAccount\TermsAndConditions.cshtml" />
+    <Content Include="Views\NonAccount\EnterNewPassword.cshtml" />
+    <Content Include="Views\Shared\_AccountLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

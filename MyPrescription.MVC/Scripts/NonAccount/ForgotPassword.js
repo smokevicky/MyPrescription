@@ -8,32 +8,40 @@
 
         if (regex.test(email)) {
             //checking email is registered or not            
-            $("#OutputDiv").html("<img height='35' src='Resources/Images/ripple.gif' /> Please wait a moment...");
+            $("#OutputDiv").html("<img height='35' src='/Resources/Images/ripple.gif' /> Please wait a moment...");
             setTimeout(function () {
                 $.ajax({
                     type: "GET",
-                    url: "/api/user/isavailable",
+                    url: "/userapi/isavailable",
                     data: { 'stringValue': email },
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (data) {                    
+                    success: function (data) {
                         if (data == false) {
 
                             //send email
-                            $("#SendMailBtn").click();
+                            //no success function
+                            $.ajax({
+                                type: "GET",
+                                url: "/NonAccount/SendForgotPasswordEmailAndFlag",
+                                data: { 'stringValue': email },
+                                contentType: "application/json; charset=utf-8"
+                            });
+                            //end
                             
                             $("#ForgotEmail").hide();
                             $("#RecoverBtn").hide();
-                            $("#LargeDiv").html("<span style='color:green'>Instructions have been sent to your Email-id : <b>" + email + "</b>. <br />Kindly check your Email to continue further.</span>");
+                            $("#LargeDiv").html("<span class='text-success'>Instructions have been sent to your Email-id : <b>" +
+                                email + "</b>. <br />Kindly check your Email to continue further.</span>");
                             $("#OutputDiv").html("");
 
-                            //Redirecting to SignIn.aspx after 2 secs.
+                            //Redirecting to SignIn.aspx after 4 secs.
                             setTimeout(function () {
-                                location = 'SignIn.aspx';
-                            },2000);
+                                window.location.href = "/Home/Index";
+                            },4000);
                         }
-                        else {                            
-                            $("#OutputDiv").html("<span style='color:red'>Email-Id is not registered. Check again.</span>");                            
+                        else {
+                            $("#OutputDiv").html("<span style='color:red'>Email-Id is not registered. Check again.</span>");
                         }
                     }
                 });

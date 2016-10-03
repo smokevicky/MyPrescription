@@ -1,9 +1,8 @@
 ﻿$(document).ready(function () {
     var token = $("#token").val();
-    var isPasswordValid = false;
 
     $("#ConfirmBtn").click(function () {
-        var registeredEmail = $("#RegisteredEmail").val();
+        registeredEmail = $("#RegisteredEmail").val();
         if (registeredEmail == "") {
             return;
         }
@@ -11,20 +10,20 @@
         if (regex.test(registeredEmail)) {
             $("#RegisteredEmail").hide();
             $("#ConfirmBtn").hide();
-            $("#EmailOutputDiv").html("<img height='35' src='Resources/Images/ripple.gif' /> Please wait a moment...");
+            $("#EmailOutputDiv").html("<img height='35' src='/Resources/Images/ripple.gif' /> Please wait a moment...");
 
             //confirm identity
             setTimeout(function () {
                 $.ajax({
                     type: "GET",
-                    url: "/api/user/checkemailfromtoken/" + token,
-                    //data: { 'token': token },
+                    url: "/userapi/checkemailfromtoken/",
+                    data: { 'stringValue': token },
                     contentType: "application/json; charset=utf-8",
-                    dataType: "json",
+                    //dataType: "json",
                     success: function (data) {
                         if (data == registeredEmail) {
                             //show inputboxes
-                            $("#LargeText").html("<span style='color:green'>Identity Confirmed</span>");
+                            $("#LargeText").html("<span class='text-success'>Identity Confirmed</span>");
                             $("#confirmIdentity").hide();
                             $("#enterNewPassword-row").removeClass("hidden");
                         }
@@ -32,9 +31,12 @@
                             $("#LargeText").html("<span style='color:red'>IDENTITY NOT CONFIRMED. TAKING YOU BACK TO THE HOME PAGE.</span>");
                             $("#EmailOutputDiv").html("");
                             setTimeout(function () {
-                                location = 'SignIn.aspx';
+                                window.location.href = "/Home/Index";
                             }, 2000);
                         }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
                     }
                 });
             }, 500);
@@ -90,11 +92,40 @@
                 $("#confirmPassword").popover('hide');
 
                 $("#ResetBtn").hide();
-                $("#LargeText").html("<span style='color:green'>Resetting</span>");
-                $("#FinalOutputDiv").html("<img height='35' src='Resources/Images/ripple.gif' /> Resetting... Please wait a moment...");
+                $("#LargeText").html("<span class='text-success'>Resetting</span>");
+                $("#FinalOutputDiv").html("<img height='35' src='/Resources/Images/ripple.gif' /> Resetting... Please wait a moment...");
 
                 setTimeout(function () {
-                    $("#ResetBtnServer").click();
+                    $.ajax({
+                        type: "GET",
+                        url: "/nonaccount/finalresetpassword/",
+                        data: { 'stringValue': password },
+                        contentType: "application/json; charset=utf-8",
+                        //dataType: "json",
+                        success: function (data) {
+                            if (data == "0") {
+                                $("#LargeText").html("<span style='color:red'>Password reset Unsuccessful</span>");
+                                $("#FinalOutputDiv").html("");
+                            }
+                            else if (data == "1") {
+                                $("#enterNewPassword-row").addClass("hidden");
+                                $("#HeaderText").html("<span class='text-success'>Password reset Successful</span>");
+                                $("#LargeText").hide();
+                                $("#FinalOutputDiv").show();
+                                $("#FinalOutputDiv").html("Everything's done here. Kindly head to the " +
+                                                           "<a href='/Home/Index'>HOME</a> page and sign in using your new credentials<br/>" +
+                                                           "A confirmation mail containing your new credentials has been sent " +
+                                                           "to your registered Email-Id : <b>" + registeredEmail + "</b>.");
+                                $("#confirmIdentity").hide();
+
+                            } else {
+                                Notify("Error has occured", "danger");
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        }
+                    });
                 },1000);
             }
             else {

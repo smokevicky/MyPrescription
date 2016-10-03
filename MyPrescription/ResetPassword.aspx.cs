@@ -9,7 +9,7 @@ namespace MyPrescription
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckToken();            
+            CheckToken();
         }
 
         private async void CheckToken()
@@ -32,6 +32,6 @@ namespace MyPrescription
             {
                 Response.Redirect("InvalidToken.aspx", false);
             }
-        } 
+        }
     }
 }

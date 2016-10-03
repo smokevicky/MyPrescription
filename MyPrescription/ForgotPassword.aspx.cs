@@ -26,7 +26,7 @@ namespace MyPrescription
                 {
                     Response.Redirect("SignIn.aspx", false);
                 }
-                else if(userModelObject.statusCode == StatusCode.valid)
+                else if (userModelObject.statusCode == StatusCode.valid)
                 {
                     string body = System.IO.File.ReadAllText(Server.MapPath(EmailTemplates.forgotPasswordHTML));    //Get HTML form EmailTemplate
                     body = body.Replace("#FULL_NAME", userModelObject.firstName + " " + userModelObject.lastName);  //replacing #TAGs in HTML
