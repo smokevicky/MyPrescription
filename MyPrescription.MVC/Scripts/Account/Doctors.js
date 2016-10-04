@@ -13,7 +13,7 @@
         table = $('#example').DataTable({
             responsive: true,
             ajax: {
-                url: '/api/doctor/getdoctordetails',
+                url: '/doctorapi/getdoctordetails',
                 dataType: "json",
                 dataSrc: function (data) {
                     return data.doctorModelList;
@@ -41,13 +41,15 @@
                 responsivePriority: 2,
                 targets: 5,
                 mRender: function (data, type, full) {
-                    return '<a data-doctorId=' + data + ' class="edit-btn btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+                    return '<a data-doctorId=' + data + ' class="edit-btn btn btn-warning">' +
+                        '<i class="fa fa-pencil" aria-hidden="true"></i></a>';
                 }
             }, {
                 responsivePriority: 1,
                 targets: 6,
                 mRender: function (data, type, full) {
-                    return '<a data-doctorId=' + data + ' class="delete-btn btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                    return '<a data-doctorId=' + data + ' class="delete-btn btn btn-danger">' +
+                        '<i class="fa fa-trash" aria-hidden="true"></i></a>';
                 }
             }, {
                 aTargets: [5, 6],
@@ -63,18 +65,9 @@
 
     IntializeDataTable();
 
-    //UpdateCount = function () {
-    //    alert(table.data().count());
-    //}
-
     UpdateDataTable = function () {
         table.ajax.reload(null, false);
-        //UpdateCount();
-    }
-
-    //$(table.column(2).header()).addClass('all');
-    //table.responsive.rebuild();
-    //table.responsive.recalc();            
+    }           
 
     // Add a new record
     $("#addBtn").click(function () {
@@ -111,7 +104,8 @@
             else {
                 $("#inputDiv").hide();
                 $("#notificationDiv").show();
-                $("#notificationDiv").html("<div class='text-center'><img height='35' src='../Resources/Images/ripple.gif' />Please wait...</div>");
+                $("#notificationDiv").html("<div class='text-center'>" +
+                    "<img height='35' src='/Resources/Images/ripple.gif' />Please wait...</div>");
                 
 
                 if (isEdit == false) {
@@ -127,7 +121,7 @@
 
                     setTimeout(function () {
                         $.ajax({
-                            url: '/api/doctor/addnewdoctor',
+                            url: '/doctorapi/addnewdoctor',
                             type: 'POST',
                             contentType: 'application/json; charset=utf-8',
                             data: JSON.stringify(doctorModelObject),
@@ -165,7 +159,7 @@
 
                     setTimeout(function () {
                         $.ajax({
-                            url: '/api/doctor/updatedoctordetails',
+                            url: '/doctorapi/updatedoctordetails',
                             type: 'POST',
                             contentType: 'application/json; charset=utf-8',
                             data: JSON.stringify(doctorModelObject),
@@ -210,14 +204,13 @@
 
     function FillData(doctorId, disabledState) {
         $.ajax({
-            url: '/api/doctor/getsingledoctordetails',
+            url: '/doctorapi/getsingledoctordetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({ doctorId: doctorId }),
             dataType: "json",
             success: function (data) {
                 ResetModal();
-                console.log(data);
                 //filling data
                 $("#doctorName").val(data.name);
                 $("#doctorAddress").val(data.address);
@@ -225,7 +218,7 @@
                 $("#doctorPhoneNo2").val(data.phoneNo2);
                 $("#doctorEmail").val(data.email);
                 $("#doctorPhoneNo").val(data.phoneNo);
-                $("#hospitalsList").val(data.hospitalId);                
+                $("#hospitalsList").val(data.hospitalId);
 
                 if (data.isPrimary == 1) {
                     $("#doctorPrimaryMark").attr('checked', true);
@@ -233,7 +226,8 @@
 
                     $("#noteDiv").removeClass("note-unmarked").removeClass("note-info").addClass('note-marked');
                     $("#noteText").html("This Doctor is the current Primary Marked Doctor. You can't unselect him/her.<br />");
-                    $("#noteText").append("If you want to mark any other doctor as Primary then goto that particular doctor details and Mark him/her as Primary.");
+                    $("#noteText").append("If you want to mark any other doctor as Primary " +
+                        "then goto that particular doctor details and Mark him/her as Primary.");
                     $("#doctorPrimaryMark").attr('disabled', true);
                 }
                 else {
@@ -263,7 +257,7 @@
                 }
             }
         });
-    }
+    };
 
     // Delete a record
     $('#example').on('click', 'a.delete-btn', function (e) {
@@ -274,12 +268,12 @@
             buttons: {
                 "Yes": function () {
                     $.ajax({
-                        url: '/api/doctor/deletedoctor',
+                        url: '/doctorapi/deletedoctor',
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify({ doctorId: doctorId }),
                         dataType: "json",
-                        success: function (data) {                            
+                        success: function (data) {
                             if (data == true) {
                                 dialog.dialog('close');
                                 Notify("Deleted Successfully", "success");
@@ -302,23 +296,25 @@
 
     });
 
-    ResetModal = function () {
+    ResetModal = function() {
         //resetting the modal to default
         $("#notificationDiv").hide();
         $("#inputDiv").show();
         $("#addNewModal").find('form')[0].reset();
         $("#emailValidationDiv").addClass("hidden");
         $("#hospitalValidationDiv").addClass("hidden");
-        $("#doctorPrimaryMark").attr("checked", false).bootstrapToggle('off');        
+        $("#doctorPrimaryMark").attr("checked", false).bootstrapToggle('off');
         $("#hospitalsList").val("0");
 
         //removing disabled states
         $("#inputDiv .form-control").removeClass('well').attr('disabled', false);
-        $("#doctorPrimaryMark").attr('disabled', false);        
+        $("#doctorPrimaryMark").attr('disabled', false);
 
         //resetting note
         $("#noteDiv").removeClass("note-marked").removeClass("note-info").addClass("note-unmarked");;
-        $("#noteText").text("If you select this Doctor as the primary mark, then the existing primary marked Doctor will be unmarked.");
+        $("#noteText")
+            .text("If you select this Doctor as the primary mark, " +
+                "then the existing primary marked Doctor will be unmarked.");
 
         //resetting buttons
         $("#modalAddBtn").show();
@@ -332,11 +328,10 @@
         //setting text depending on action
         if (isEdit == true) {
             $("#modalAddBtn").text("Update");
-        }
-        else {
+        } else {
             $("#modalAddBtn").text("Add");
         }
-    }
+    };
 
     $("#modalCancelBtn").click(function () {
         $('#addNewModal').modal('hide');

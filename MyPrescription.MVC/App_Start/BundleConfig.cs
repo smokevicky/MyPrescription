@@ -56,6 +56,22 @@ namespace MyPrescription.MVC
                     "~/Scripts/NonAccount/EnterNewPassword.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/Account/Master").Include(
+                    "~/Scripts/Account/Master.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/Account/Dashboard").Include(
+                    "~/Scripts/Account/Dashboard.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/Account/Hospitals").Include(
+                    "~/Scripts/Account/Hospitals.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/Account/Doctors").Include(
+                    "~/Scripts/Account/Doctors.js"
+                ));
+
             //EnableOptimizations:false - disable optimization for debugging purposes
             BundleTable.EnableOptimizations = false;
         }

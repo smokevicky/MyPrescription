@@ -37,7 +37,7 @@ namespace MyPrescription.API.Controller
         }
 
         /// <summary>
-        /// 
+        /// Gets the list of hospitals for the current user
         /// </summary>
         /// <param name="hospitalRequestModelObject"></param>
         /// <returns>list of hospital details, rowCount</returns>

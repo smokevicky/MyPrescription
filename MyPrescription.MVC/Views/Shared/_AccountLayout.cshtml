@@ -1,10 +1,36 @@
-﻿@*/********************************************************
+﻿@using System.Threading
+@*/********************************************************
 ** FileName:    _AccountLayout.cshtml
 ** Author:      Jyoti Prakash Jena
 ** Date:        3.10.2016
 ** Purpose:     Master Page for AccountController
 ********************************************************/*@
 
+@{
+
+    ViewBag.FullName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Session["FName"].ToString() +
+        " " +
+        Session["LName"].ToString());
+    ViewBag.Email = Session["EMail"].ToString();
+
+    //determining if phone no is available or not
+    ViewBag.Phone = "<i class='error'>Phone No not available</i>";
+    if (Session["Phone"].ToString() != "")
+    {
+        ViewBag.Phone = Session["Phone"].ToString();
+    }
+
+    //setting proile pic url if available
+    ViewBag.ProfilePicUrl = "/Resources/ProfilePictures/default.jpg";
+
+    string profilePicPath = "/Resources/ProfilePictures/" + Session["userId"].ToString() + ".jpeg";
+
+    if (File.Exists(Server.MapPath(profilePicPath)))
+    {
+        ViewBag.ProfilePicUrl = profilePicPath;
+    }
+
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +44,7 @@
     
     @Styles.Render("~/Css/Generic")
     @Styles.Render("~/Css/Account")
+    @Scripts.Render("~/bundles/modernizr")
     
     <!--Font CDNs-->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
@@ -26,78 +53,121 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" />
-
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <!-- Navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top headroom">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Button for smallest screens -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="@Url.Action("index", "home")">
-                    <img src="~/Resources/Images/logo.png" height="50" alt="My Prescription Logo" />
-                    My Prescription
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-11">
+                    <a class="navbar-brand" href="/Account/Dashboard">
+                        <img id="BrandImage" src="~/Resources/Images/logo.png" height="50" />
+                        <a class="text-right" id="BrandText" href="/Account/Dashboard">
+                            <div id="SmallGap"></div>
+                            My Prescription
+                        </a>
+                    </a>
+                </div>
+
+                <div class="col-xs-1">
+                    <div class="pull-right dropdown">
+                        <img id="ProfilePic" src=@Html.Raw(ViewBag.ProfilePicUrl) height="45"/>
+                        <div class="text-center dropdown-menu small-info-dropdown" id="CaretDiv">
+                            <i class="fa fa-caret-up fa-3x fa-inverse" aria-hidden="true"></i>
+                        </div>
+                        <div class="dropdown-menu small-info-dropdown" id="ShowInfoDiv">
+                            <div class="panel panel-default" id="ProfilePictureDropdown">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <img id="ProfilePicLarge" class="dropdown-toggle" data-toggle="dropdown"
+                                                 src=@Html.Raw(ViewBag.ProfilePicUrl) height="120"/>
+                                            <div id="ChangeDiv">Change</div>
+                                        </div>
+                                        <div class="col-xs-7" id="SmallInfo">
+                                            <b><span id="spanName">@ViewBag.FullName</span></b><br/>
+                                            <span id="spanEmail">@ViewBag.Email</span>
+                                            <br/>
+                                            <span id="spanPhone">@Html.Raw(ViewBag.Phone)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="row text-center">
+                                        <div class="col-xs-6 pull-left">
+                                            <a class="btn btn-default" href="/Account/Profile">Update Profile</a>
+                                        </div>
+                                        <div class="col-xs-6 pull-right">
+                                            <a class="btn btn-action" id="signOutBtn" href="/Account/SignOut">Sign Out</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- /navbar -->
+
+    <div class="container-fluid text-center" id="BodyContent">
+        <div class="row content">
+    
+            <div class="col-sm-3 SideNavigation">
+            <div class="list-group text-left">
+                <a class="list-group-item" id="DashboardListItem" href="/Account/Dashboard">
+                    <i class="fa fa-area-chart fa-fw" aria-hidden="true"></i>
+                    &nbsp; Dashboard <span class="badge" id="dashboardCountBadge">0</span>
+                </a>
+                <a class="list-group-item" id="ProfileListItem" href="/Account/Profile">
+                    <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+                    &nbsp; Profile <span class="badge" id="profileCountBadge">0%</span>
+                </a>
+                <a class="list-group-item" id="HospitalsListItem" href="/Account/Hospitals">
+                    <i class="fa fa-h-square fa-fw" aria-hidden="true"></i>
+                    &nbsp; Hospitals <span class="badge" id="hospitalsCountBadge">0</span>
+                </a>
+                <a class="list-group-item" id="DoctorsListItem" href="/Account/Doctors">
+                    <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                    &nbsp; Doctors <span class="badge" id="doctorsCountBadge">0</span>
+                </a>
+                <a class="list-group-item" id="VaultListItem" href="/Account/Vault">
+                    <i class="fa fa-folder-open fa-fw" aria-hidden="true"></i>
+                    &nbsp; Vault <span class="badge" id="vaultsCountBadge">0</span>
                 </a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="@Url.Action("About", "Home")">About</a></li>
-                    <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
+        </div>
+    
+            <div class="col-sm-9 text-left MainContent">
+    
+                <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/bootstrap")
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+                <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    
+                <!-- Master Js -->
+                @Scripts.Render("~/bundles/Account/Master")
+    
+                <!--Inline Scipt tags in content pages-->
+                @RenderSection("scripts", required: false)
+    
+                <div id="snackbar"></div>
+    
+                @RenderBody()
+            </div>
         </div>
     </div>
-    <!-- /navbar -->
-    
-    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->	
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/customLibraries")
-    
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 
-    @RenderSection("scripts", required: false)
-
-    <div >
-    
-        @RenderBody()
-
-    </div>
-
-    <!-- Fixed footer -->
-    <footer id="footer" class="top-space">
-        <div class="footer2">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6 widget">
-                        <div class="widget-body">
-                            <p class="simplenav">
-                                <a href="@Url.Action("index", "Home")">Home</a> |
-                                <a href="@Url.Action("about", "Home")">About</a> |
-                                <b><a href="#">Privacy Policy</a></b> |
-                                <a href="@Url.Action("contact","Home")">Contact Us</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 widget">
-                        <div class="widget-body">
-                            <p class="text-right">
-                                Copyright &copy; @DateTime.Now.Year, My Prescription.
-                                Designed by <a href="//www.meetvicky.com/" target="_blank">Jyoti Prakash Jena</a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div> <!-- /row of widgets -->
+    <!--footer -->
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-right" id="FooterText">
+                    Copyright &copy; @DateTime.Now.Year, My Prescription. Designed by &nbsp; <a href="http://www.meetvicky.com/" target="_blank"> Jyoti Prakash Jena</a>
+                </p>
             </div>
         </div>
     </footer>

@@ -29,7 +29,7 @@ namespace MyPrescription.DAL
                 cmd.Parameters.AddWithValue("@phone2", doctorModelObject.phoneNo2);
                 cmd.Parameters.AddWithValue("@email", doctorModelObject.email);
                 cmd.Parameters.AddWithValue("@hospitalId", doctorModelObject.hospitalId);
-                cmd.Parameters.AddWithValue("@userId", doctorModelObject.userId);                
+                cmd.Parameters.AddWithValue("@userId", doctorModelObject.userId);
                 cmd.Parameters.AddWithValue("@isPrimary", doctorModelObject.isPrimary);
 
                 sqlUtilityObject.con.Open();

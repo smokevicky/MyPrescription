@@ -24,7 +24,7 @@
     });
 
     $("#ChangeDiv").click(function () {
-        window.location.href = "Profile.aspx?tab=ProfilePicture";
+        window.location.href = "/Account/Profile?tab=ProfilePicture";
     });
 
     $(document).mouseup(function (e) {
@@ -62,10 +62,10 @@
 
     GetBadgeCount = function () {
         $.ajax({
-            url: '/api/user/getbadgecount',
+            url: '/userapi/getbadgecount',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
-            dataType: "json",
+            //dataType: "json",
             success: function (data) {
                 if (data.statusCode == 1) {
                     $("#dashboardCountBadge").html("<span>0 Updates</span>");
@@ -77,6 +77,9 @@
                 else {
                     Notify("Some error has occured", 'danger');
                 }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
             }
         });
     };

@@ -58,7 +58,8 @@
             else {                
                 $("#inputDiv").hide();
                 $("#notificationDiv").show();
-                $("#notificationDiv").html("<div class='text-center'><img height='35' src='../Resources/Images/ripple.gif' />Please wait...</div>");
+                $("#notificationDiv").html("<div class='text-center'>" +
+                    "<img height='35' src='/Resources/Images/ripple.gif' />Please wait...</div>");
 
                 if (isEdit == false) {
                     var hospitalModelObject = {
@@ -94,25 +95,28 @@
     });
 
     function AddOrUpdateAjaxCall(actionName, hospitalModelObject) {
+        var uri = "";
+        var successNotification = "";
+
         if (actionName == "add") {
-            var uri = "addnewhospital";
-            var successNotification = "Added";
+            uri = "addnewhospital";
+            successNotification = "Added";
         }
         else {
-            var uri = "updatehospitaldetails";
-            var successNotification = "Updated";
+            uri = "updatehospitaldetails";
+            successNotification = "Updated";
         }
 
         setTimeout(function () {
             $.ajax({
-                url: '/api/hospital/' + uri,
+                url: '/hospitalapi/' + uri,
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(hospitalModelObject),
-                dataType: "json",
+                //dataType: "json",
                 success: function (data) {
                     console.log(data);
-                    if (data == true) {
+                    if (data == "True") {
                         $("#notificationDiv").html("<div class='success text-center'>"+ successNotification +" Successfully</div>");
                         setTimeout(function () {
                             $('#addNewModal').modal('hide');
@@ -139,7 +143,7 @@
         };
 
         $.ajax({
-            url: '/api/hospital/gethospitaldetails',
+            url: '/hospitalapi/gethospitaldetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(hospitalRequestModelObject),
@@ -239,19 +243,20 @@
             buttons: {
                 "Yes": function () {                    
                     $.ajax({
-                        url: '/api/hospital/deletehospital',
+                        url: '/hospitalapi/deletehospital',
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(hospitalModelObject),
-                        dataType: "json",
+                        //dataType: "json",
                         success: function (data) {
-                            if (data == true) {
-                                alert("Deleted Successfully");
+                            console.log(data);
+                            if (data == "True") {
+                                Notify("Deleted Successfully", "success");
                                 dialog.dialog('close');
                                 UpdateGrid();
                             }
                             else {
-                                alert("Couldn't delete. Try refreshing the page");
+                                Notify("Couldn't delete. Try refreshing the page", "danger");
                                 dialog.dialog('close');
                                 UpdateGrid();
                             }
@@ -290,7 +295,7 @@
             userId: userId
         };
         $.ajax({
-            url: '/api/hospital/getsinglehospitaldetails',
+            url: '/hospitalapi/getsinglehospitaldetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(hospitalModelObject),
@@ -312,7 +317,8 @@
 
                     $("#noteDiv").removeClass("note-unmarked").removeClass("note-info").addClass('note-marked');
                     $("#noteText").html("This is the current Primary Marked Hospital. You can't unselect it.<br />");
-                    $("#noteText").append("If you want to mark another hospital as Primary then goto that hospital details and Mark it as Primary.");
+                    $("#noteText").append("If you want to mark another hospital as Primary " +
+                        "then goto that hospital details and Mark it as Primary.");
                     $("#hospitalPrimaryMark").attr('disabled', true);
                 }
                 else {
@@ -359,7 +365,8 @@
 
         //resetting note
         $("#noteDiv").removeClass("note-marked").removeClass("note-info").addClass("note-unmarked");;        
-        $("#noteText").text("If you select this Hospital as the primary mark, then the existing primary marked Hospital will be unmarked.");
+        $("#noteText").text("If you select this Hospital as the primary mark, " +
+            "then the existing primary marked Hospital will be unmarked.");
 
         //resetting buttons
         $("#modalAddBtn").show();
@@ -377,11 +384,7 @@
         else {
             $("#modalAddBtn").text("Add");
         }
-    }    
-
-    //$("#gridHeader").bind('click', function () {
-    //    $(this).html($(this).html() == 'Sl. No. (&#9650;)' ? 'Sl. No. (&#9660;)' : 'Sl. No. (&#9650;)');
-    //});
+    }
 
     $(".arrow-down").hide();    
 

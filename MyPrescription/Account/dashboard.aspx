@@ -7,7 +7,7 @@
     
     Dashboard    
     
-    <input type="hidden" runat="server" id="nameSessionVariable" class="text-capitalize" />    
+    <input type="hidden" runat="server" id="nameSessionVariable" class="text-capitalize" />
 
     <script src="../Scripts/Account/Dashboard.js"></script>
 </asp:Content>

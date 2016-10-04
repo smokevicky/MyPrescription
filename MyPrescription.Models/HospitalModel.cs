@@ -34,5 +34,11 @@
             isPrimary = -1;
             error = null;
         }
-    }   
+    }
+
+    public class HospitalDropDownModel
+    {
+        public int hospitalId { get; set; }
+        public string hospitalName { get; set; }
+    }
 }

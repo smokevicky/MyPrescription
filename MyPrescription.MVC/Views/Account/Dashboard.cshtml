@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+@{
+    ViewBag.FullName = Session["FName"].ToString() + " " + Session["LName"].ToString();
+    ViewBag.FullName = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(ViewBag.FullName);
+}
+
+<div class="wrapper">
+
+    <div class="wrapper-heading">
+        <h3>Dashboard</h3>
+        <input type="hidden" id="nameSessionVariable" class="text-capitalize" value="@ViewBag.FullName" />
+    </div>
+
+    <div class="wrapper-body" id="hospitalGrid">
+
+    </div>
+
+    <div class="wrapper-footer">
+
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/Account/Dashboard")

@@ -23,7 +23,7 @@
     <!--Custom Stylesheet-->
     <link href="../CSS/Account/Master.css" rel="stylesheet" />
 
-    <asp:ContentPlaceHolder ID="head" runat="server">     
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
