@@ -1,0 +1,108 @@
+﻿@model MyPrescription.Models.HospitalModel
+
+@{
+    ViewBag.Title = "View Hospital Details";
+}
+
+<!--Start-->
+
+<h3>View Hospital details</h3>
+<hr class="hr" />
+
+<div class="modal-body" id="modalBody">
+
+    <div id="inputDiv">
+
+        <div class="row form-group ">
+            <div class="col-xs-3 vertialCenter">
+                Hospital Name:
+            </div>
+            <div class="col-xs-9">
+                <label>@Model.name</label>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-3">
+                Address:
+            </div>
+            <div class="col-xs-9">
+                <label>@Model.address</label>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-3">
+                Primary Phone No:
+            </div>
+            <div class="col-xs-9">
+                <label>@Model.phoneNo</label>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-3">
+                Secondary Phone No (optional):
+            </div>
+            <div class="col-xs-9">
+                <label>
+                    @if (Model.phoneNo2 == "")
+                    {
+                        @Html.Raw("<span class='text-danger'>Optional Phone No not provided<span>");
+                    }
+                    else
+                    {
+                        @Model.phoneNo2
+                    }
+                </label>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-3">
+                EMail-Id:
+            </div>
+            <div class="col-xs-9">
+                <label>@Model.email</label>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-3">
+                Primary Marked :
+            </div>
+            <div class="col-xs-9">
+                <label>
+                    @if (Model.isPrimary == 1)
+                    {
+                        @Html.Raw("<span class='note-info'>Yes</span>");
+                    }
+                    else
+                    {
+                        @Html.Raw("<span class='text-danger'>No</span>");
+                    }
+                </label>
+            </div>
+        </div>
+
+        <div class="row form-group text-bold note-info" id="noteDiv">
+            <div class="col-xs-3">
+                Note:
+            </div>
+            <div class="col-xs-9" id="noteText">
+                Creation Date  : @Model.createdOn
+                <br />Last Updation Date : @Model.updatedOn
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+    <a class="btn btn-default modal-cancel-btn" id="modalCancelBtn"
+       onclick="window.location='@Url.Action("Hospitals", "Account")'">
+        Done
+    </a>
+</div>
+
+<!--End-->

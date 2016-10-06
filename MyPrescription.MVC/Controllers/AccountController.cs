@@ -7,6 +7,7 @@
 
 using MyPrescription.BL;
 using MyPrescription.Models;
+using MyPrescription.Util;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -177,7 +178,7 @@ namespace MyPrescription.MVC.Controllers
         /// <param name="hospitalId">The hospital identifier.</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult EditHospital(int? hospitalId)
+        public ActionResult EditHospital(int hospitalId)
         {
             try
             {
@@ -186,7 +187,7 @@ namespace MyPrescription.MVC.Controllers
                 ViewBag.UserId = userId;
 
                 var hospitalDetails =
-                    HospitalBL.GetSingleHospitalDetails(new HospitalModel() { hospitalId = (int)hospitalId, userId = ViewBag.UserId });
+                    HospitalBL.GetSingleHospitalDetails(new HospitalModel() { hospitalId = hospitalId, userId = ViewBag.UserId });
 
                 return View(hospitalDetails);
             }
@@ -196,13 +197,153 @@ namespace MyPrescription.MVC.Controllers
             }
         }
 
+        /// <summary>
+        /// Accepts data after posting of Edit Form and Sends to BL to update db
+        /// </summary>
+        /// <param name="formCollection">The form collection.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("EditHospital")]
         public ActionResult EditHospital_Post(FormCollection formCollection)
         {
             try
             {
+                int userId;
+                int.TryParse(Session["userId"].ToString(), out userId);
+
+                int hospitalId;
+                int.TryParse(formCollection["hospitalId"], out hospitalId);
+
+                var hospitalName = formCollection["hospitalName"];
+                var address = formCollection["hospitalAddress"];
+                var phNo = formCollection["hospitalPhoneNo"];
+                var phNo2 = formCollection["hospitalPhoneNo2"];
+                var email = formCollection["hospitalEmail"];
+
+                int primaryMark;
+                int.TryParse(formCollection["hospitalPrimaryMark"], out primaryMark);
+
+                var hospitalModelObject = new HospitalModel()
+                {
+                    hospitalId = hospitalId,
+                    name = hospitalName,
+                    address = address,
+                    phoneNo = phNo,
+                    phoneNo2 = phNo2,
+                    email = email,
+                    isPrimary = primaryMark,
+                    userId = userId
+                };
+
+                var returnVal = HospitalBL.UpdateHospitalDetails(hospitalModelObject);
+
+                if (returnVal == true)
+                {
+                    Common.Notify("Hospital details updated successfully", "success");
+                }
+                else
+                {
+                    Common.Notify("Error occured", "danger");
+                }
+
+                return RedirectToAction("Hospitals");
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /// <summary>
+        /// Retuns view for viewing of hospital details
+        /// </summary>
+        /// <param name="hospitalId">The hospital identifier.</param>
+        /// <returns></returns>
+        public ActionResult ViewHospital(int hospitalId)
+        {
+            try
+            {
+                int userId;
+                int.TryParse(Session["userId"].ToString(), out userId);
+                ViewBag.UserId = userId;
+
+                var hospitalDetails =
+                    HospitalBL.GetSingleHospitalDetails(new HospitalModel() { hospitalId = hospitalId, userId = ViewBag.UserId });
+
+                return View(hospitalDetails);
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /// <summary>
+        /// Returns view for adding a new hospital.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult AddNewHospital()
+        {
+            try
+            {
+                ViewBag.UserId = Session["userId"].ToString();
                 return View();
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /// <summary>
+        /// Accepts data after posting of AddNew Form and Sends to BL to add to db.
+        /// </summary>
+        /// <param name="formCollection">The form collection.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddNewHospital(FormCollection formCollection)
+        {
+            try
+            {
+                int userId;
+                int.TryParse(Session["userId"].ToString(), out userId);
+
+                int hospitalId = Common.generateRandomId(FieldType.Hospital);
+
+                var hospitalName = formCollection["hospitalName"];
+                var address = formCollection["hospitalAddress"];
+                var phNo = formCollection["hospitalPhoneNo"];
+                var phNo2 = formCollection["hospitalPhoneNo2"];
+                var email = formCollection["hospitalEmail"];
+
+                int primaryMark;
+                int.TryParse(formCollection["hospitalPrimaryMark"], out primaryMark);
+
+                var hospitalModelObject = new HospitalModel()
+                {
+                    hospitalId = hospitalId,
+                    name = hospitalName,
+                    address = address,
+                    phoneNo = phNo,
+                    phoneNo2 = phNo2,
+                    email = email,
+                    isPrimary = primaryMark,
+                    userId = userId
+                };
+
+                var returnVal = HospitalBL.AddNewHospital(hospitalModelObject);
+
+                if (returnVal == true)
+                {
+                    Common.Notify("Hospital details added successfully", "success");
+                }
+                else
+                {
+                    Common.Notify("Error occured", "danger");
+                }
+
+                return RedirectToAction("Hospitals");
             }
             catch (NullReferenceException)
             {

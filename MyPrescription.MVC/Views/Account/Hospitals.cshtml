@@ -80,21 +80,28 @@
     </div>
 
     <div class="wrapper-footer">
+        
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <div class="col-sm-3 col-xs-12">
-            <div class="col-sm-6">
-                <b>Select Page Size:</b>
-            </div>
-            <div class="col-sm-6">
-                <select class="form-control" id="pageSizeDropup">
-                    <option value="5">5 (Recommended)</option>
-                    <option value="7">7</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                </select>
-            </div>
+    <div class="col-sm-3 col-xs-12">
+        <div class="col-sm-6">
+            <b>Select Page Size:</b>
         </div>
+        <div class="col-sm-6">
+            <select class="form-control" name="pageSize" id="pageSizeDropup" onchange="this.form.submit();">
+                <option value="5">5 (Recommended)</option>
+                <option value="7">7</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+        </div>
+    </div>
 
+    <input type="hidden" name="pageStart" value="1" />
+    <input type="hidden" name="sortBy" value="serial-up"/>
+}
         <div class="col-sm-3 col-xs-12">
             <div class="text-center">
                 <ul class="pagination">
@@ -119,7 +126,10 @@
         </div>
 
         <div class="col-sm-3 col-xs-12">
-            <a class="btn btn-action pull-right" id="addBtn">Add</a>
+            <a class="btn btn-action pull-right" id="addBtn" 
+               onclick="window.location = '@Url.Action("AddNewHospital", "Account")'">
+                Add
+            </a>
         </div>
 
     </div>

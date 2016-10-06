@@ -10,7 +10,7 @@ namespace MyPrescription.MVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Verify",
+                name: "VerifyApi",
                 url: "{controller}/{action}/{token}",
                 defaults: new { controller = "Home", action = "Index", token = UrlParameter.Optional }
             );
@@ -25,6 +25,12 @@ namespace MyPrescription.MVC
                 name: "UserApi",
                 url: "{controller}/{action}/{stringValue}",
                 defaults: new { controller = "Home", action = "Index", stringValue = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "HospitalEditApi",
+                url: "{controller}/{action}/{hospitalId}",
+                defaults: new { controller = "Account", action = "Index", hospitalId = UrlParameter.Optional }
             );
 
             routes.MapRoute(

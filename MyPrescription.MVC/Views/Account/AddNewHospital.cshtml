@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Add new hospital";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h3>Add New Hospital</h3>
+    <hr class="hr"/>
+
+                <div class="modal-body" id="modalBody">
+
+                    <div id="inputDiv">
+
+                        <div class="row form-group ">
+                            <div class="col-xs-3 vertialCenter">
+                                Hospital Name:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="text" id="hospitalName" name="hospitalName" class="form-control" placeholder="Enter Hospital Name"
+                                       maxlength="100" required="required" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                Address:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="text" id="hospitalAddress" name="hospitalAddress" class="form-control" placeholder="Enter address"
+                                       maxlength="100" required="required" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                Phone No:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="number" id="hospitalPhoneNo" name="hospitalPhoneNo" class="form-control" placeholder="Enter primary phone no"
+                                       maxlength="11" required="required"
+                                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                Phone No:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="number" id="hospitalPhoneNo2" name="hospitalPhoneNo2" class="form-control"
+                                       placeholder="Enter secondary phone no (optional)"
+                                       maxlength="11"
+                                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3">
+                                EMail-Id:
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="email" id="hospitalEmail" name="hospitalEmail" class="form-control"
+                                       placeholder="Enter Email-Id of the Hospital"
+                                       maxlength="50" required="required" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-9 error" id="emailValidationDiv">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-5">
+                                Mark as Primary ???
+                            </div>
+                            <div class="col-xs-7">
+                                <input id="hospitalPrimaryMark" name="hospitalPrimaryMark" type="checkbox" data-toggle="toggle"
+                                       data-on="<i class='fa fa-thumb-tack' aria-hidden='true'></i> Marked"
+                                       data-off="<i class='fa fa-thumb-tack fa-rotate-180' aria-hidden='true'></i> Unmarked"
+                                       data-width="110" data-onstyle="action" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group text-bold note-unmarked" id="noteDiv">
+                            <div class="col-xs-3">
+                                Note:
+                            </div>
+                            <div class="col-xs-9" id="noteText">
+                                If you select this Hospital as the primary mark, then the existing primary marked Hospital will be unmarked.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-default modal-cancel-btn"
+                       id="modalCancelBtn"
+                       onclick="window.location='@Url.Action("Hospitals", "Account")'">
+                        Cancel
+                    </a>
+                    <button type="reset" class="btn btn-warning modal-reset-btn" id="modalResetBtn">Reset</button>
+                    <button type="submit" class="btn btn-action" id="modalAddBtn">Add</button>
+                </div>
+
+}

@@ -34,7 +34,8 @@
                 </a>
             </div>
             <div class="col-xs-1 hospital-view">
-                <a class="btn btn-info btn-view" data-hospitalId="@hospital.hospitalId">
+                <a class="btn btn-info btn-view" data-hospitalId="@hospital.hospitalId"
+                   onclick="window.location='@Url.Action("ViewHospital", "Account", new {hospitalId = hospital.hospitalId})'" >
                     <i class="fa fa-table" aria-hidden="true"></i>
                 </a>
             </div>

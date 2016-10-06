@@ -26,13 +26,13 @@
         show: false
     });
 
-    $("#addBtn").click(function () {
-        isEdit = false;
+    //$("#addBtn").click(function () {
+    //    isEdit = false;
 
-        ResetModal();
+    //    ResetModal();
 
-        $('#addNewModal').modal('show');
-    });
+    //    $('#addNewModal').modal('show');
+    //});
 
     $("#modalCancelBtn").click(function () {
         $('#addNewModal').modal('hide');
@@ -44,7 +44,7 @@
         var hPhoneNo = $("#hospitalPhoneNo").val();
         var hPhoneNo2 = $("#hospitalPhoneNo2").val();
         var hEmail = $("#hospitalEmail").val();
-        var hPrimary = $("#hospitalPrimaryMark").is(':checked') ? 1 : 0;       
+        var hPrimary = $("#hospitalPrimaryMark").is(':checked') ? 1 : 0;
 
         if ((hName == "") || (hAddress == "") || (hPhoneNo == "") || (hEmail == "")) {
             return;
@@ -223,13 +223,13 @@
     //    UpdateGrid();
     //});
 
-    $("#pageSizeDropup").change(function () {        
-        pageSize = $(this).val();
-        selectedPageBtn = 1;
-        pageStart = 1;        
+    //$("#pageSizeDropup").change(function () {
+    //    pageSize = $(this).val();
+    //    selectedPageBtn = 1;
+    //    pageStart = 1;        
 
-        UpdateGrid();
-    });
+    //    UpdateGrid();
+    //});
 
     $("#hospitalGrid").on("click", ".btn-delete", function () {
         var hospitalId = $(this).attr("data-hospitalId");
@@ -281,13 +281,13 @@
     //    $('#addNewModal').modal('show');
     //});
 
-    $("#hospitalGrid").on("click", ".btn-view", function () {
-        var hospitalId = $(this).attr("data-hospitalId");
+    //$("#hospitalGrid").on("click", ".btn-view", function () {
+    //    var hospitalId = $(this).attr("data-hospitalId");
 
-        FillData(hospitalId, true);        
+    //    FillData(hospitalId, true);        
 
-        $('#addNewModal').modal('show');            
-    });
+    //    $('#addNewModal').modal('show');            
+    //});
 
     function FillData(hospitalId, disabledState) {
         var hospitalModelObject = {
