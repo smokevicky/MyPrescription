@@ -1,6 +1,12 @@
-﻿
+﻿@using MyPrescription.Models
+@model MyPrescription.Models.HospitalResponseModel
+
 @{
     ViewBag.Title = "Hospitals";
+    var pageSize = Model.pageSize;
+    var selectedBtn = Model.page;
+    var pageStart = Model.pageStart;
+    var sortBy = Model.sortBy;
 }
 
 <div class="wrapper">
@@ -40,7 +46,37 @@
     </div>
 
     <div class="wrapper-body" id="hospitalGrid">
-
+        @if (Model.statusCode == 0)
+            {
+            <div class="h3 text-center text-muted">
+                <i class='fa fa-chain-broken fa-4x' aria-hidden='true'></i>
+                <br />
+                There's nothing here
+                <br />
+                Add new hospital details by clicking on the
+                <br />
+                <a class="btn btn-action disabled">Add</a>
+                <br />
+                button to see them here.
+            </div>
+        }
+        else if (Model.statusCode == 1)
+        {
+            
+            Html.RenderPartial("_HospitalGrid", Model);
+            
+        }
+        else
+        {
+            <div class="error h3 text-center">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                <br />
+                Error has occured.
+                <div>
+                    @Model.error
+                </div>
+            </div>
+        }
     </div>
 
     <div class="wrapper-footer">
@@ -51,9 +87,9 @@
             </div>
             <div class="col-sm-6">
                 <select class="form-control" id="pageSizeDropup">
-                    <option value="5">5</option>
+                    <option value="5">5 (Recommended)</option>
                     <option value="7">7</option>
-                    <option value="10">10 (Recommended)</option>
+                    <option value="10">10</option>
                     <option value="15">15</option>
                 </select>
             </div>
@@ -61,12 +97,25 @@
 
         <div class="col-sm-3 col-xs-12">
             <div class="text-center">
-                <ul class="pagination"></ul>
+                <ul class="pagination">
+                    @{
+                        Html.RenderPartial("_HospitalPagination", new HospitalPaginationModel()
+                        {
+                            rowCount = Model.rowCount,
+                            pageSize = pageSize,
+                            selectedBtn = selectedBtn,
+                            pageStart = pageStart,
+                            sortBy = sortBy
+                        });
+                    }
+                </ul>
             </div>
         </div>
 
         <div class="col-sm-3 col-xs-12 text-center text-bold h4">
-            <div id="totalNoOfRecords" class="text-danger"></div>
+            <div id="totalNoOfRecords" class="text-danger">
+                Total No of Records : @Model.rowCount
+            </div>
         </div>
 
         <div class="col-sm-3 col-xs-12">

@@ -1,0 +1,49 @@
+﻿@model MyPrescription.Models.HospitalResponseModel
+    
+@{
+    int i = Model.pageStart;
+    foreach (var hospital in Model.hospitalModelList)
+    {
+        <div class="row">
+            <div class="col-xs-1 serial-no">
+                @i
+            </div>
+            <div class="col-xs-1 text-center primary-mark">
+                @if (hospital.isPrimary == 1)
+                {
+                    <i class='fa fa-thumb-tack fa-2x' aria-hidden='true'></i>
+                }
+                else
+                {
+                    <span>-</span>
+                }
+            </div>
+            <div class="col-xs-2 hospital-name">
+                @hospital.name
+            </div>
+            <div class="col-xs-3 hospital-address">
+                @hospital.address
+            </div>
+            <div class="col-xs-2 hospital-phone">
+                @hospital.phoneNo
+            </div>
+            <div class="col-xs-1 hospital-edit">
+                <a class="btn btn-warning btn-edit" data-hospitalId="@hospital.hospitalId" 
+                   onclick="window.location='@Url.Action("EditHospital", "Account", new {hospitalId = hospital.hospitalId})'">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="col-xs-1 hospital-view">
+                <a class="btn btn-info btn-view" data-hospitalId="@hospital.hospitalId">
+                    <i class="fa fa-table" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="col-xs-1 hospital-delete">
+                <a class="btn btn-danger btn-delete" data-hospitalId="@hospital.hospitalId">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        i++;
+    }
+}

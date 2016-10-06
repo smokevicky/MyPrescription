@@ -249,6 +249,9 @@
     <Content Include="Views\Account\Dashboard.cshtml" />
     <Content Include="Views\Account\Hospitals.cshtml" />
     <Content Include="Views\Account\Doctors.cshtml" />
+    <Content Include="Views\Shared\_HospitalGrid.cshtml" />
+    <Content Include="Views\Shared\_HospitalPagination.cshtml" />
+    <Content Include="Views\Account\EditHospital.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

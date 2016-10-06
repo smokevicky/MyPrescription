@@ -9,7 +9,7 @@
     sortBy = "serial-up";
 
     //default page size
-    var pageSize = 7;
+    var pageSize = 5;
     $("#pageSizeDropup option[value='" + pageSize + "']").attr("selected", "selected");
 
     var selectedPageBtn = 1;
@@ -203,7 +203,7 @@
                     //writing total no of records
                     $("#totalNoOfRecords").text("Total No of Records : " + data.rowCount);
                 }
-                //Error    
+                //Error
                 else {
                     $("#errorText").text(data.error);
                     $("#hospitalGrid").html($("#ErrorDiv").html());
@@ -212,16 +212,16 @@
         });
     }
 
-    UpdateGrid();
+    //UpdateGrid();
 
-    $(".pagination").on("click", "li a.btn-no", function () {
-        var btnNo = $(this).attr("data-btn-no");
-        pageStart = (pageSize * (btnNo - 1)) + 1;
+    //$(".pagination").on("click", "li a.btn-no", function () {
+    //    var btnNo = $(this).attr("data-btn-no");
+    //    pageStart = (pageSize * (btnNo - 1)) + 1;
 
-        selectedPageBtn = btnNo;        
+    //    selectedPageBtn = btnNo;
 
-        UpdateGrid();
-    });
+    //    UpdateGrid();
+    //});
 
     $("#pageSizeDropup").change(function () {        
         pageSize = $(this).val();
@@ -270,16 +270,16 @@
         });                
     });
 
-    $("#hospitalGrid").on("click", ".btn-edit", function () {
-        var hospitalId = $(this).attr("data-hospitalId");
+    //$("#hospitalGrid").on("click", ".btn-edit", function () {
+    //    var hospitalId = $(this).attr("data-hospitalId");
 
-        isEdit = true;
-        ResetModal();
+    //    isEdit = true;
+    //    ResetModal();
 
-        FillData(hospitalId, false);
+    //    FillData(hospitalId, false);
         
-        $('#addNewModal').modal('show');
-    });
+    //    $('#addNewModal').modal('show');
+    //});
 
     $("#hospitalGrid").on("click", ".btn-view", function () {
         var hospitalId = $(this).attr("data-hospitalId");

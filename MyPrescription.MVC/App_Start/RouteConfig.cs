@@ -28,6 +28,12 @@ namespace MyPrescription.MVC
             );
 
             routes.MapRoute(
+                name: "HospitalApi",
+                url: "{controller}/{action}/{hospitalRequestModelObject}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

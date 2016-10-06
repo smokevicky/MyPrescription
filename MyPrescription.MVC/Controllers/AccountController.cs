@@ -5,6 +5,7 @@
 ** Purpose:     Handles all the Account Page Requests.
 ********************************************************/
 
+using MyPrescription.BL;
 using MyPrescription.Models;
 using System;
 using System.Collections.Generic;
@@ -54,12 +55,61 @@ namespace MyPrescription.MVC.Controllers
         /// Returns the view for the Hospitals page.
         /// </summary>
         /// <returns></returns>
-        public ActionResult Hospitals()
+        [HttpGet]
+        public ActionResult Hospitals(int? page, string sortBy, int? pageSize)
         {
             try
             {
                 ViewBag.UserId = Session["userId"].ToString();
-                return View();
+                var defaultPageSize = 5;
+
+                page = (page == null) ? 1 : page;
+                pageSize = (pageSize == null) ? defaultPageSize : pageSize;
+
+                var requestModelObject = new HospitalRequestModel()
+                {
+                    //setting all the default values
+                    pageStart = (int)((page - 1) * pageSize) + 1,
+                    pageSize = (int)pageSize,
+                    sortBy = sortBy,
+                    userId = Convert.ToInt32(ViewBag.UserId)
+                };
+
+                var listOfHospitals = HospitalBL.GetHospitalDetails(requestModelObject);
+                listOfHospitals.page = (int)page;
+
+                return View(listOfHospitals);
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /// <summary>
+        /// Returns the view for the Hospitals page and renders grid based on the HospitalRequestModel
+        /// </summary>
+        /// <param name="hospitalRequestModelObject">The hospital request model object.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Hospitals(HospitalRequestModel hospitalRequestModelObject)
+        {
+            try
+            {
+                ViewBag.UserId = Session["userId"].ToString();
+
+                var requestModelObject = new HospitalRequestModel()
+                {
+                    //setting all the default values
+                    pageStart = hospitalRequestModelObject.pageStart,
+                    pageSize = hospitalRequestModelObject.pageSize,
+                    sortBy = hospitalRequestModelObject.sortBy,
+                    userId = Convert.ToInt32(ViewBag.UserId)
+                };
+
+                var listOfHospitals = HospitalBL.GetHospitalDetails(requestModelObject);
+
+                return View(listOfHospitals);
             }
             catch (NullReferenceException)
             {
@@ -76,9 +126,6 @@ namespace MyPrescription.MVC.Controllers
             try
             {
                 ViewBag.UserId = Session["userId"].ToString();
-
-                //start
-
 
                 string constr = ConfigurationManager.ConnectionStrings["MyPrescriptionConnectionString"].ConnectionString;
                 using (SqlConnection con = new SqlConnection(constr))
@@ -115,7 +162,46 @@ namespace MyPrescription.MVC.Controllers
                 }
                 //hospitalsList.Items.Insert(0, new ListItem("--Select the Hospital the Doctor belongs to--", "0"));
 
-                //end
+                return View();
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+
+        /// <summary>
+        /// Retuns view for editing of hospital details
+        /// </summary>
+        /// <param name="hospitalId">The hospital identifier.</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult EditHospital(int? hospitalId)
+        {
+            try
+            {
+                int userId;
+                int.TryParse(Session["userId"].ToString(), out userId);
+                ViewBag.UserId = userId;
+
+                var hospitalDetails =
+                    HospitalBL.GetSingleHospitalDetails(new HospitalModel() { hospitalId = (int)hospitalId, userId = ViewBag.UserId });
+
+                return View(hospitalDetails);
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("EditHospital")]
+        public ActionResult EditHospital_Post(FormCollection formCollection)
+        {
+            try
+            {
                 return View();
             }
             catch (NullReferenceException)

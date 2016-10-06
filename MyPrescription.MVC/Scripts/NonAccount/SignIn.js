@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     $("#loadingDiv").hide();
-    $("#loadingDiv").html("<img src='/Resources/Images/signInLoad.gif' />");
+    $("#loadingDiv").html("<img src='/Resources/Images/signInLoad2.gif' />");
 
     $("#logIn").click(function () {
 
