@@ -3,9 +3,9 @@ $(document).ready(function () {
 
     $("#loadingDiv").hide();
     $("#loadingDiv").html("<img src='/Resources/Images/signInLoad2.gif' />");
+    $("#frmDiv").show();
 
     $("#logIn").click(function () {
-
         var email = $("#username").val();
         var pwd = $("#password").val();
         if ((email == "") || (pwd == ""))  {
@@ -32,29 +32,31 @@ $(document).ready(function () {
     });
 
     SignIn = function (email, password) {
-        var userModelObject = {
-            email: email,
-            password: password
-        }
+        //var userModelObject = {
+        //    email: email,
+        //    password: password
+        //}
 
-        $.ajax({
-            type: "POST",
-            url: "/nonaccount/signin",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(userModelObject),
-            dataType: "json",
-            success: function(statusCode) {
-                if (statusCode == 0) {
-                    $("#invalidText").removeClass("hidden");
-                }
-                else if (statusCode == 1) {
-                    $("#invalidText").addClass("hidden");
-                    window.location = "/NonAccount/VerifyAccountActivation";
-                } else {
-                    Notify("Some error has occured", "danger");
-                }
-            }
-        });
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/nonaccount/signin",
+        //    contentType: "application/json; charset=utf-8",
+        //    data: JSON.stringify(userModelObject),
+        //    dataType: "json",
+        //    success: function(statusCode) {
+        //        if (statusCode == 0) {
+        //            $("#invalidText").removeClass("hidden");
+        //        }
+        //        else if (statusCode == 1) {
+        //            $("#invalidText").addClass("hidden");
+        //            window.location = "/NonAccount/VerifyAccountActivation";
+        //        } else {
+        //            Notify("Some error has occured", "danger");
+        //        }
+        //    }
+        //});
+
+        $("#logInServer").click();
     }
 
     $("#popover").popover({

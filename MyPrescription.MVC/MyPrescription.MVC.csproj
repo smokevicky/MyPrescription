@@ -254,6 +254,8 @@
     <Content Include="Views\Account\EditHospital.cshtml" />
     <Content Include="Views\Account\ViewHospital.cshtml" />
     <Content Include="Views\Account\AddNewHospital.cshtml" />
+    <Content Include="Views\NonAccount\PasswordResetUnsuccessful.cshtml" />
+    <Content Include="Views\NonAccount\PasswordResetSuccessful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

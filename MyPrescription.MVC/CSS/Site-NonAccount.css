@@ -352,7 +352,7 @@ img.pull-left { margin-right: 10px; }
 	color:#263238;
 }
 .form form {
-  display: none;
+  /*display: none;*/
 }
 .form form.active {
   display: block;

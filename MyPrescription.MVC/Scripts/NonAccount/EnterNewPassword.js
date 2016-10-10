@@ -10,7 +10,8 @@
         if (regex.test(registeredEmail)) {
             $("#RegisteredEmail").hide();
             $("#ConfirmBtn").hide();
-            $("#EmailOutputDiv").html("<img height='35' src='/Resources/Images/ripple.gif' /> Please wait a moment...");
+            $("#EmailOutputDiv").html("<img height='35' src='/Resources/Images/ripple.gif' />" +
+                " Please wait a moment...");
 
             //confirm identity
             setTimeout(function () {
@@ -28,7 +29,8 @@
                             $("#enterNewPassword-row").removeClass("hidden");
                         }
                         else {
-                            $("#LargeText").html("<span style='color:red'>IDENTITY NOT CONFIRMED. TAKING YOU BACK TO THE HOME PAGE.</span>");
+                            $("#LargeText").html("<span style='error'>IDENTITY NOT CONFIRMED." +
+                                " TAKING YOU BACK TO THE HOME PAGE.</span>");
                             $("#EmailOutputDiv").html("");
                             setTimeout(function () {
                                 window.location.href = "/Home/Index";
@@ -96,36 +98,37 @@
                 $("#FinalOutputDiv").html("<img height='35' src='/Resources/Images/ripple.gif' /> Resetting... Please wait a moment...");
 
                 setTimeout(function () {
-                    $.ajax({
-                        type: "GET",
-                        url: "/nonaccount/finalresetpassword/",
-                        data: { 'stringValue': password },
-                        contentType: "application/json; charset=utf-8",
-                        //dataType: "json",
-                        success: function (data) {
-                            if (data == "0") {
-                                $("#LargeText").html("<span style='color:red'>Password reset Unsuccessful</span>");
-                                $("#FinalOutputDiv").html("");
-                            }
-                            else if (data == "1") {
-                                $("#enterNewPassword-row").addClass("hidden");
-                                $("#HeaderText").html("<span class='text-success'>Password reset Successful</span>");
-                                $("#LargeText").hide();
-                                $("#FinalOutputDiv").show();
-                                $("#FinalOutputDiv").html("Everything's done here. Kindly head to the " +
-                                                           "<a href='/Home/Index'>HOME</a> page and sign in using your new credentials<br/>" +
-                                                           "A confirmation mail containing your new credentials has been sent " +
-                                                           "to your registered Email-Id : <b>" + registeredEmail + "</b>.");
-                                $("#confirmIdentity").hide();
+                    //$.ajax({
+                    //    type: "GET",
+                    //    url: "/nonaccount/finalresetpassword/",
+                    //    data: { 'stringValue': password },
+                    //    contentType: "application/json; charset=utf-8",
+                    //    //dataType: "json",
+                    //    success: function (data) {
+                    //        if (data == "0") {
+                    //            $("#LargeText").html("<span style='color:red'>Password reset Unsuccessful</span>");
+                    //            $("#FinalOutputDiv").html("");
+                    //        }
+                    //        else if (data == "1") {
+                    //            $("#enterNewPassword-row").addClass("hidden");
+                    //            $("#HeaderText").html("<span class='text-success'>Password reset Successful</span>");
+                    //            $("#LargeText").hide();
+                    //            $("#FinalOutputDiv").show();
+                    //            $("#FinalOutputDiv").html("Everything's done here. Kindly head to the " +
+                    //                                       "<a href='/Home/Index'>HOME</a> page and sign in using your new credentials<br/>" +
+                    //                                       "A confirmation mail containing your new credentials has been sent " +
+                    //                                       "to your registered Email-Id : <b>" + registeredEmail + "</b>.");
+                    //            $("#confirmIdentity").hide();
+                    //        } else {
+                    //            Notify("Error has occured", "danger");
+                    //        }
+                    //    },
+                    //    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                    //    }
+                    //});
 
-                            } else {
-                                Notify("Error has occured", "danger");
-                            }
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                        }
-                    });
+                    $("#resetBtnServer").click();
                 },1000);
             }
             else {

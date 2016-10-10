@@ -1,10 +1,11 @@
 ﻿@*/********************************************************
-** FileName:    Index.cshtml
-** Author:      Jyoti Prakash Jena
-** Date:        28.9.2016
-** Purpose:     View of the Index page or SignIn page
-********************************************************/*@
+    ** FileName:    Index.cshtml
+    ** Author:      Jyoti Prakash Jena
+    ** Date:        28.9.2016
+    ** Purpose:     View of the Index page or SignIn page
+    ********************************************************/*@
 
+@using MyPrescription.Util
 @using WebGrease.Css.Ast.Selectors
 @{
     ViewBag.Title = "SignIn";
@@ -46,12 +47,19 @@
 
 
             <div class="col-sm-5">
-                
+
                 <!--If credentials are invalid then show a Invalid Credentials message-->
-                <div id="invalidText" class="hidden">
-                    <b> &#10007; Kindly double check your credentials<br/></b>
-                </div>
-                
+                @{
+                    var className = string.Empty;
+
+                    className = TempData["statusCode"] != null &&
+                                TempData["statusCode"].ToString() == SignInStatusCode.invalid.ToString()
+                                ? "" : "hidden";
+
+                    <div id="invalidText" name="invalidText" class="@className">
+                        <b> &#10007; Kindly double check your credentials<br /></b>
+                    </div>
+                }
 
                 <div class="form-container">
                     <div class="form style-2">
@@ -59,24 +67,34 @@
                             <h1 class="active">Sign In</h1>
                         </div>
 
-                        <div id="frmDiv">
-                            <form class="active" method="post">
-                                <div class="form-group">
-                                    <input id="username" type="text" placeholder="Email-id" required="required" maxlength="50"/>
-                                    <label for="username" data-placement="top" id="popover">Email-id</label>
-                                    <div class="line"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input id="password" type="password" placeholder="Password" required="required" maxlength="30"/>
-                                    <label for="password">Password</label>
-                                    <div class="line"></div>
-                                </div>
-                                <button id="logIn" class="button">Login</button>
-                                <div id="temp" class="footer">
-                                    <a href="@Url.Action("ForgotPassword", "NonAccount")"><b>Forgot your password?</b></a>
-                                </div>
-                            </form>
-                        </div>
+                        @using (Html.BeginForm("SignIn", "NonAccount", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div id="frmDiv">
+                                <form class="active" method="post">
+                                    <div class="form-group">
+                                        <input id="username" name="email" type="text" placeholder="Email-id" required="required" maxlength="50" />
+                                        <label for="username" data-placement="top" id="popover">Email-id</label>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="password" name="password" type="password" placeholder="Password" required="required" maxlength="30" />
+                                        <label for="password">Password</label>
+                                        <div class="line"></div>
+                                    </div>
+                                    <button id="logIn" class="button">Login</button>
+
+                                    <button class="hidden" id="logInServer" type="submit"
+                                            onclick="this.form.submit();"></button>
+
+                                    <!--Forgot password-->
+                                    <div id="temp" class="footer">
+                                        <a href="@Url.Action("ForgotPassword", "NonAccount")"><b>Forgot your password?</b></a>
+                                    </div>
+                                </form>
+                            </div>
+                        }
 
                         <div id="loadingDiv"></div>
                     </div>
