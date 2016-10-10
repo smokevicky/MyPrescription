@@ -164,7 +164,6 @@ namespace MyPrescription.EntityFramework
 
                         //adding temp list of all hospitals to hospitalModelList
                         hospitalResponseModelObject.hospitalModelList = tempListOfHospitals;
-
                     }
                     else
                     {
@@ -180,6 +179,11 @@ namespace MyPrescription.EntityFramework
                 hospitalResponseModelObject.statusCode = StatusCode.error;
                 hospitalResponseModelObject.error = ex.ToString();
             }
+
+            hospitalResponseModelObject.pageSize = hospitalRequestModelObject.pageSize;
+            hospitalResponseModelObject.pageStart = hospitalRequestModelObject.pageStart;
+            hospitalResponseModelObject.sortBy = hospitalRequestModelObject.sortBy;
+
             return hospitalResponseModelObject;
         }
 
@@ -286,6 +290,7 @@ namespace MyPrescription.EntityFramework
                                                        && hospital.UserId == hospitalModelObject.userId
                                                  select new
                                                  {
+                                                     hospital.HospitalId,
                                                      hospital.Name,
                                                      hospital.Address,
                                                      hospital.Phone,
@@ -300,6 +305,7 @@ namespace MyPrescription.EntityFramework
                         hospitalModelReturnObject.statusCode = StatusCode.valid;
 
                         //assigning respective properties from context
+                        hospitalModelReturnObject.hospitalId = singleHospitalDetails.HospitalId;
                         hospitalModelReturnObject.name = singleHospitalDetails.Name;
                         hospitalModelReturnObject.address = singleHospitalDetails.Address;
                         hospitalModelReturnObject.phoneNo = singleHospitalDetails.Phone;

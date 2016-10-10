@@ -8,13 +8,9 @@ namespace MyPrescription.Models
         public List<HospitalModel> hospitalModelList = new List<HospitalModel>();
         public int rowCount { get; set; }
         public string error { get; set; }
-
-        public HospitalResponseModel()
-        {
-            statusCode = -1;
-            hospitalModelList = null;
-            rowCount = -1;
-            error = null;
-        }
+        public int pageStart { get; set; }
+        public int pageSize { get; set; }
+        public string sortBy { get; set; }
+        public int page { get; set; }
     }
 }

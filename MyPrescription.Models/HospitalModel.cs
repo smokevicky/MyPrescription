@@ -1,7 +1,18 @@
-﻿namespace MyPrescription.Models
+﻿/********************************************************
+** FileName:    HospitalModel.cs
+** Author:      Jyoti Prakash Jena
+** Date:        5.10.2016
+** Purpose:     Keeps all the Model classes related to hospitals
+********************************************************/
+
+namespace MyPrescription.Models
 {
+    /// <summary>
+    /// Contains all the db properties for HospitalMaster
+    /// </summary>
     public class HospitalModel
     {
+        public int rowStart { get; set; }
         public int statusCode { get; set; }
         public int row { get; set; }
         public int hospitalId { get; set; }
@@ -36,9 +47,24 @@
         }
     }
 
+    /// <summary>
+    /// Contains properties for generating hospital dropdown in Doctors Page
+    /// </summary>
     public class HospitalDropDownModel
     {
         public int hospitalId { get; set; }
         public string hospitalName { get; set; }
+    }
+
+    /// <summary>
+    /// Contains properties for generating page buttons in Hospitals page
+    /// </summary>
+    public class HospitalPaginationModel
+    {
+        public int rowCount { get; set; }
+        public int pageSize { get; set; }
+        public int selectedBtn { get; set; }
+        public int pageStart { get; set; }
+        public string sortBy { get; set; }
     }
 }
