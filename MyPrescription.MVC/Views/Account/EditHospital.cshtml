@@ -1,0 +1,203 @@
+﻿@model MyPrescription.Models.HospitalModel
+@{ ViewBag.Title = "Edit Hospital Details"; }
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @*<div class="form-horizontal">
+            <h4>Edit your hospital details</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.phoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.phoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phoneNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.phoneNo2, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.phoneNo2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phoneNo2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.isPrimary, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.isPrimary, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.isPrimary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-action" />
+                </div>
+            </div>
+        </div>*@
+
+    <!--Start-->
+
+    <h3>Edit Hospital details</h3>
+    <hr class="hr" />
+
+    <div class="modal-body" id="modalBody">
+
+        <div id="inputDiv">
+
+            <input name="hospitalId" type="hidden" value="@Model.hospitalId"/>
+
+            <div class="row form-group ">
+                <div class="col-xs-3 vertialCenter">
+                    Hospital Name:
+                </div>
+                <div class="col-xs-9">
+                    <input type="text" id="hospitalName" name="hospitalName" class="form-control" placeholder="Enter Hospital Name"
+                           maxlength="100" required="required"
+                           value="@Model.name" />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-3">
+                    Address:
+                </div>
+                <div class="col-xs-9">
+                    <input type="text" name="hospitalAddress" id="hospitalAddress" class="form-control" placeholder="Enter address"
+                           maxlength="100" required="required"
+                           value="@Model.address" />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-3">
+                    Phone No:
+                </div>
+                <div class="col-xs-9">
+                    <input type="number" name="hospitalPhoneNo" id="hospitalPhoneNo" class="form-control" placeholder="Enter primary phone no"
+                           maxlength="11" required="required"
+                           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                           value="@Model.phoneNo" />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-3">
+                    Phone No:
+                </div>
+                <div class="col-xs-9">
+                    <input type="number" name="hospitalPhoneNo2" id="hospitalPhoneNo2" class="form-control"
+                           placeholder="Enter secondary phone no (optional)"
+                           maxlength="11"
+                           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                           value="@Model.phoneNo2" />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-3">
+                    EMail-Id:
+                </div>
+                <div class="col-xs-9">
+                    <input type="email" name="hospitalEmail" id="hospitalEmail" class="form-control"
+                           placeholder="Enter Email-Id of the Hospital"
+                           maxlength="50" required="required"
+                           value="@Model.email" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9 error" id="emailValidationDiv">
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-5">
+                    Mark as Primary ???
+                </div>
+                <div class="col-xs-7">
+                    <input id="hospitalPrimaryMark" name="hospitalPrimaryMark" type="checkbox" data-toggle="toggle"
+                           data-on="<i class='fa fa-thumb-tack' aria-hidden='true'></i> Marked"
+                           data-off="<i class='fa fa-thumb-tack fa-rotate-180' aria-hidden='true'></i> Unmarked"
+                           data-width="110" data-onstyle="action"
+                           @if (Model.isPrimary == 1) { @Html.Raw("checked = checked")   ; @Html.Raw("disabled = disabled")   ; } />
+                </div>
+            </div>
+
+            @{
+                var className = "";
+                var noteText = "";
+                if (Model.isPrimary == 1)
+                {
+                    className = "note-marked";
+                    noteText = "This is the current Primary Marked Hospital. You can't unselect it.<br/>" +
+                               "If you want to mark another hospital as Primary " +
+                               "then goto that hospital details and Mark it as Primary.";
+                }
+                else
+                {
+                    className = "note-unmarked";
+                    noteText = "If you select this Hospital as the primary mark, " +
+                               "then the existing primary marked Hospital will be unmarked.";
+                }
+
+                <div class="row form-group text-bold @className" id="noteDiv">
+                    <div class="col-xs-3">
+                        Note:
+                    </div>
+                    <div class="col-xs-9" id="noteText">
+                        @Html.Raw(noteText)
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div id="notificationDiv">
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <a class="btn btn-default modal-cancel-btn"
+           id="modalCancelBtn"
+           onclick="window.location='@Url.Action("Hospitals", "Account")'">
+            Cancel
+        </a>
+        <button type="reset" class="btn btn-warning modal-reset-btn" id="modalResetBtn">Reset</button>
+        <button type="submit" class="btn btn-action" id="modalAddBtn">Update</button>
+    </div>
+
+    <!--End-->
+                }

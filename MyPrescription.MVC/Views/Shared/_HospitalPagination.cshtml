@@ -1,0 +1,23 @@
+﻿@using MyPrescription.Models
+@model MyPrescription.Models.HospitalPaginationModel
+
+@{
+    var noOfButtons = Model.rowCount / Model.pageSize;
+    var className = "";
+
+    for (var i = 1; i <= noOfButtons; i++)
+    {
+        className = (i == Model.selectedBtn) ? "active" : "";
+
+        <li class="@className">
+            <a data-btn-no="@i" class="btn-no" onclick="window.location='@Url.Action("Hospitals","Account", new 
+                                                               {
+                                                                   page = i,
+                                                                   pageSize = Model.pageSize,
+                                                                   sortBy = Model.sortBy
+                                                               })'">
+                @i
+            </a>
+        </li>
+    }
+}
