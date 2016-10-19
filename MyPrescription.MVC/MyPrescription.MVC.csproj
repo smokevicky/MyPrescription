@@ -173,6 +173,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\metro.css" />
     <Content Include="CSS\Site-Account.css" />
     <Content Include="CSS\bootstrap.css" />
     <Content Include="CSS\Site-NonAccount.css" />
@@ -205,7 +206,6 @@
     <Content Include="Scripts\Libraries\bootstrap.min.js" />
     <Content Include="FileHandlers\DocHandler.ashx" />
     <Content Include="FileHandlers\PdfAndImageHandler.ashx" />
-    <Content Include="package.json" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Libraries\jquery-1.10.2.js" />
     <Content Include="Scripts\Libraries\jquery-1.10.2.min.js" />
@@ -223,8 +223,6 @@
     <Content Include="Scripts\Libraries\respond.min.js" />
     <Content Include="Scripts\Libraries\_references.js" />
     <Content Include="Scripts\NonAccount\SignUp.js" />
-    <Content Include="styles.css" />
-    <Content Include="systemjs.config.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -262,9 +260,6 @@
     <Content Include="Views\Account\AddNewHospital.cshtml" />
     <Content Include="Views\NonAccount\PasswordResetUnsuccessful.cshtml" />
     <Content Include="Views\NonAccount\PasswordResetSuccessful.cshtml" />
-    <Content Include="tsconfig.json" />
-    <Content Include="typings.json" />
-    <Content Include="app\_SignInSignUp.html" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -300,18 +295,6 @@
       <Project>{0b0fa680-49e3-4798-bf87-1b3b9de7e7fa}</Project>
       <Name>MyPrescription.Util</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Account\app\Account\dashboard.component.ts" />
-    <TypeScriptCompile Include="Account\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="Account\app\app.component.ts" />
-    <TypeScriptCompile Include="Account\app\app.module.ts" />
-    <TypeScriptCompile Include="Account\app\main.ts" />
-    <TypeScriptCompile Include="app\Account\dashboard.component.ts" />
-    <TypeScriptCompile Include="app\app.component.spec.ts" />
-    <TypeScriptCompile Include="app\app.component.ts" />
-    <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
