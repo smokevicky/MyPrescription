@@ -224,6 +224,7 @@
     <Content Include="Scripts\Libraries\_references.js" />
     <Content Include="Scripts\NonAccount\SignUp.js" />
     <Content Include="styles.css" />
+    <Content Include="systemjs.config.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -242,7 +243,6 @@
     <Content Include="Views\NonAccount\_ViewStart.cshtml" />
     <Content Include="Views\NonAccount\ForgotPassword.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\NonAccount\SignUpStep2.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\NonAccount\InvalidToken.cshtml" />
@@ -265,6 +265,7 @@
     <Content Include="tsconfig.json" />
     <Content Include="typings.json" />
     <Content Include="app\_SignInSignUp.html" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,6 +302,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Account\app\Account\dashboard.component.ts" />
+    <TypeScriptCompile Include="Account\app\app.component.spec.ts" />
+    <TypeScriptCompile Include="Account\app\app.component.ts" />
+    <TypeScriptCompile Include="Account\app\app.module.ts" />
+    <TypeScriptCompile Include="Account\app\main.ts" />
+    <TypeScriptCompile Include="app\Account\dashboard.component.ts" />
     <TypeScriptCompile Include="app\app.component.spec.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
