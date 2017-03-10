@@ -31,10 +31,6 @@ namespace MyPrescription.MVC
             bundles.Add(new StyleBundle("~/Css/Generic").Include(
                     "~/CSS/bootstrap.css"));
 
-            //bundles.Add(new StyleBundle("~/Css/Generic").Include(
-            //        "~/CSS/bootstrap.css",
-            //        "~/CSS/metro.css"));
-
             bundles.Add(new StyleBundle("~/Css/NonAccount").Include(
                       "~/CSS/Site-NonAccount.css"
                       ));

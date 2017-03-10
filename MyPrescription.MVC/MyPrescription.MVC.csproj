@@ -193,6 +193,8 @@
     <Content Include="Resources\Images\ripple.gif" />
     <Content Include="Resources\Images\signInLoad.gif" />
     <Content Include="Resources\Images\signInLoad2.gif" />
+    <Content Include="Resources\Images\tileBackground.jpg" />
+    <Content Include="Resources\Images\tileBackground2.jpg" />
     <Content Include="Resources\ProfilePictures\default.jpg" />
     <Content Include="Scripts\Account\Dashboard.js" />
     <Content Include="Scripts\Account\Doctors.js" />
@@ -202,6 +204,7 @@
     <Content Include="Scripts\Account\Vault.js" />
     <Content Include="Scripts\CustomLibraries\Headroom.min.js" />
     <Content Include="Scripts\CustomLibraries\jQuery.headroom.min.js" />
+    <Content Include="Scripts\CustomLibraries\metro.js" />
     <Content Include="Scripts\Libraries\bootstrap.js" />
     <Content Include="Scripts\Libraries\bootstrap.min.js" />
     <Content Include="FileHandlers\DocHandler.ashx" />

@@ -123,31 +123,31 @@
         if (isEmailValid == true) {
             if (pwd.length >= 8) {
                 if (pwd == pwdc) {
-                    //var userModelObject = {
-                    //    firstName : fname,
-                    //    lastName : lname,
-                    //    email: email,
-                    //    password: pwd
-                    //}
+                    var userModelObject = {
+                        firstName : fname,
+                        lastName : lname,
+                        email: email,
+                        password: pwd
+                    }
 
-                    //$.ajax({
-                    //    type: "POST",
-                    //    url: "/nonaccount/AddNewUser",
-                    //    data: JSON.stringify(userModelObject),
-                    //    contentType: "application/json; charset=utf-8",
-                    //    dataType: "json",
-                    //    success: function (data) {
-                    //        if (data == true) {
-                    //            window.location.href = "/NonAccount/SignUpStep2";
-                    //        }
-                    //        else {
-                    //            alert("failure");
-                    //        }
-                    //    },
-                    //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    //        alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                    //    }
-                    //});
+                    $.ajax({
+                        type: "POST",
+                        url: "/nonaccount/AddNewUser",
+                        data: JSON.stringify(userModelObject),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data == true) {
+                                window.location.href = "/NonAccount/SignUpStep2";
+                            }
+                            else {
+                                alert("failure");
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        }
+                    });
 
                     $("#signupFrmSubmitServer").click();
                 }

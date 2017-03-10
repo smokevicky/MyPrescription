@@ -5,4 +5,8 @@
 
     Notify("Welcome " + userName);
 
+    setTimeout(function () {
+        $(".tile-content").val(50);
+    }, 2000);
+    
 });

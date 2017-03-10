@@ -350,10 +350,5 @@ namespace MyPrescription.MVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
-        public ActionResult ReturnTilePartialView()
-        {
-            return View("TilePartialView");
-        }
     }
 }

@@ -179,7 +179,7 @@
                             </div>
                             <div class="col-xs-9">
                                 <input type="number" id="hospitalPhoneNo" class="form-control" placeholder="Enter primary phone no"
-                                    maxlength="11" required="required"
+                                    maxlength="10" required="required"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />                                
                             </div>
                         </div>
