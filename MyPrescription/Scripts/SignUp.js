@@ -53,6 +53,7 @@
     });
 
     $("#signupEmail").keyup(function () {
+        debugger;
         var email = $("#signupEmail").val();
         if (email != "") {
             if (regex.test(email)) {
@@ -64,9 +65,10 @@
 
                 setTimeout(function () {
                     $.ajax({
-                        type: "GET",
-                        url: "/api/user/isavailable",
-                        data:  { 'stringValue': email },
+                        type: "POST",
+                        url: "./api/user/isavailable",
+                        data: { 'testUserModel.email': email },
+                        //data:  { 'stringValue': email },
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",                        
                         success: function (data) {

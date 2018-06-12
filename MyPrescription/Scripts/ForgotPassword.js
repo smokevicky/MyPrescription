@@ -12,7 +12,7 @@
             setTimeout(function () {
                 $.ajax({
                     type: "GET",
-                    url: "/api/user/isavailable",
+                    url: "./api/user/isavailable",
                     data: { 'stringValue': email },
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

@@ -9,8 +9,6 @@ namespace MyPrescription.API.Controller
 {
     public class DoctorController : ApiController
     {
-
-
         /// <summary>
         /// Adds a new doctor to the db
         /// </summary>
@@ -28,7 +26,6 @@ namespace MyPrescription.API.Controller
                 int doctorId = Common.generateRandomId(FieldType.Doctor);
                 doctorModelObject.doctorId = doctorId;
                 doctorModelObject.userId = Convert.ToInt32(userId);
-
                 returnVal = DoctorBL.AddNewDoctor(doctorModelObject);
             }
             catch (Exception ex)

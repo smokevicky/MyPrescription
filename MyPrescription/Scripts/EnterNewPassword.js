@@ -17,7 +17,7 @@
             setTimeout(function () {
                 $.ajax({
                     type: "GET",
-                    url: "/api/user/checkemailfromtoken/" + token,
+                    url: "./api/user/checkemailfromtoken/" + token,
                     //data: { 'token': token },
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

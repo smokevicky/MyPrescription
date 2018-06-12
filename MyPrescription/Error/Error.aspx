@@ -25,12 +25,12 @@
 
 				  -------------------------------------------------------------------------
 
-				  <%--<form runat="server">
+				  <form runat="server">
 				  -------------------------------------------------------------------------
 				  <h4 runat="server">Error Code :  <% Response.Write(Session["errorCode"]); %></h4>
 				  <h4 runat="server">Error      :  <% Response.Write(Session["error"]); %></h4>
 				  -------------------------------------------------------------------------
-				  </form>--%>
+				  </form>
 
 				  <h3>The admin has been informed.</h3>
 				  <h2>Kindly head back to the <a href="../SignIn.aspx">Home Page</a></h2>

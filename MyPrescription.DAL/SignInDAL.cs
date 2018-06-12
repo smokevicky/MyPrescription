@@ -15,15 +15,15 @@ namespace MyPrescription.DAL
 
             UserModel userModelReturnObject = new UserModel();
 
-            //if (userModelObject.email.Equals("admin@myprescription.com") && userModelObject.password.Equals("mindfire"))
-            //{
-            //    userModelReturnObject.statusCode = SignInStatusCode.valid;
-            //    userModelReturnObject.userId = 000000000;
-            //    userModelReturnObject.email = "admin@myprescription.com";
-            //    userModelReturnObject.isActive = true;
+            if (userModelObject.email.Equals("admin@myprescription.com") && userModelObject.password.Equals("mindfire"))
+            {
+                userModelReturnObject.statusCode = SignInStatusCode.valid;
+                userModelReturnObject.userId = 000000000;
+                userModelReturnObject.email = "admin@myprescription.com";
+                userModelReturnObject.isActive = true;
 
-            //    return userModelReturnObject;
-            //}
+                return userModelReturnObject;
+            }
 
             try
             {

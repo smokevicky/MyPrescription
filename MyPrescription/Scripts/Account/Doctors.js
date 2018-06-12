@@ -13,7 +13,7 @@
         table = $('#example').DataTable({
             responsive: true,
             ajax: {
-                url: '/api/doctor/getdoctordetails',
+                url: './api/doctor/getdoctordetails',
                 dataType: "json",
                 dataSrc: function (data) {
                     return data.doctorModelList;
@@ -127,7 +127,7 @@
 
                     setTimeout(function () {
                         $.ajax({
-                            url: '/api/doctor/addnewdoctor',
+                            url: './api/doctor/addnewdoctor',
                             type: 'POST',
                             contentType: 'application/json; charset=utf-8',
                             data: JSON.stringify(doctorModelObject),
@@ -165,7 +165,7 @@
 
                     setTimeout(function () {
                         $.ajax({
-                            url: '/api/doctor/updatedoctordetails',
+                            url: './api/doctor/updatedoctordetails',
                             type: 'POST',
                             contentType: 'application/json; charset=utf-8',
                             data: JSON.stringify(doctorModelObject),
@@ -210,7 +210,7 @@
 
     function FillData(doctorId, disabledState) {
         $.ajax({
-            url: '/api/doctor/getsingledoctordetails',
+            url: './api/doctor/getsingledoctordetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({ doctorId: doctorId }),
@@ -274,7 +274,7 @@
             buttons: {
                 "Yes": function () {
                     $.ajax({
-                        url: '/api/doctor/deletedoctor',
+                        url: './api/doctor/deletedoctor',
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify({ doctorId: doctorId }),

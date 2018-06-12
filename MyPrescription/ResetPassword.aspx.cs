@@ -17,7 +17,7 @@ namespace MyPrescription
             string token = Request.QueryString["token"];
 
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("http://localhost:8080/api/user/CheckStatusFromToken/" + token);
+            HttpResponseMessage response = await client.GetAsync("http://localhost:8080/MyPrescription/api/user/CheckStatusFromToken/" + token);
             if (response.IsSuccessStatusCode)
             {
                 status = await response.Content.ReadAsStringAsync();

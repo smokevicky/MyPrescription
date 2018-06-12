@@ -62,7 +62,7 @@
 
     GetBadgeCount = function () {
         $.ajax({
-            url: '/api/user/getbadgecount',
+            url: './api/user/getbadgecount',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             dataType: "json",

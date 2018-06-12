@@ -23,7 +23,7 @@ namespace MyPrescription.API
             config.Routes.MapHttpRoute(
                 name: "hospitalApi",
                 routeTemplate: "api/{controller}/{action}/{hospitalModelObject}",
-                defaults: new { hospitalModelObject = RouteParameter.Optional }                
+                defaults: new { hospitalModelObject = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
@@ -37,7 +37,7 @@ namespace MyPrescription.API
                 routeTemplate: "api/{controller}/{action}/{vaultModelObject}",
                 defaults: new { vaultModelObject = RouteParameter.Optional }
             );
-            
+
             config.Routes.MapHttpRoute(
                 name: "fileApi",
                 routeTemplate: "api/{controller}/{action}/{fileModelObject}",

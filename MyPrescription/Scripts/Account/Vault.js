@@ -270,7 +270,7 @@
             //Ajax call for saving into db
             setTimeout(function () {
                 $.ajax({
-                    url: '/api/vault/addnewvault',
+                    url: './api/vault/addnewvault',
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -306,7 +306,7 @@
         }
 
         $.ajax({
-            url: '/api/vault/getvaultdetails',
+            url: './api/vault/getvaultdetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(vaultRequestModelObject),
@@ -422,7 +422,7 @@
                     };
 
                     $.ajax({
-                        url: '/api/vault/deletevault',
+                        url: './api/vault/deletevault',
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(vaultModelObject),
@@ -462,7 +462,7 @@
         }
 
         $.ajax({
-            url: '/api/vault/getsinglevaultdetails',
+            url: './api/vault/getsinglevaultdetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(vaultModelObject),

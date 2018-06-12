@@ -105,7 +105,7 @@
 
         setTimeout(function () {
             $.ajax({
-                url: '/api/hospital/' + uri,
+                url: './api/hospital/' + uri,
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(hospitalModelObject),
@@ -139,7 +139,7 @@
         };
 
         $.ajax({
-            url: '/api/hospital/gethospitaldetails',
+            url: './api/hospital/gethospitaldetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(hospitalRequestModelObject),
@@ -239,7 +239,7 @@
             buttons: {
                 "Yes": function () {                    
                     $.ajax({
-                        url: '/api/hospital/deletehospital',
+                        url: './api/hospital/deletehospital',
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(hospitalModelObject),
@@ -290,7 +290,7 @@
             userId: userId
         };
         $.ajax({
-            url: '/api/hospital/getsinglehospitaldetails',
+            url: './api/hospital/getsinglehospitaldetails',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(hospitalModelObject),
